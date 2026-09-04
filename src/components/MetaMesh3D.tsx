@@ -381,12 +381,13 @@ export function MetaMesh3D() {
         />
       </Canvas>
 
-      {/* Mode Switcher Tabs */}
-      <div className="absolute top-5 left-5 flex items-center gap-2 z-20">
-        <div className="flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-full border border-[#E4E4E0] shadow-sm">
+      {/* Unified Top Control Bar (Prevents Overlap) */}
+      <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 flex flex-wrap items-center justify-between gap-2 z-20 pointer-events-none">
+        {/* Mode Switcher Tabs */}
+        <div className="flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-full border border-[#E4E4E0] shadow-sm pointer-events-auto">
           <button
             onClick={() => setMode("github")}
-            className={`px-3 py-1 rounded-full text-xs font-mono font-bold transition-all ${
+            className={`px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all ${
               mode === "github" ? "bg-[#111111] text-white" : "text-[#5F6368] hover:text-[#111111]"
             }`}
           >
@@ -394,7 +395,7 @@ export function MetaMesh3D() {
           </button>
           <button
             onClick={() => setMode("leetcode")}
-            className={`px-3 py-1 rounded-full text-xs font-mono font-bold transition-all ${
+            className={`px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all ${
               mode === "leetcode" ? "bg-amber-600 text-white" : "text-[#5F6368] hover:text-[#111111]"
             }`}
           >
@@ -402,39 +403,32 @@ export function MetaMesh3D() {
           </button>
           <button
             onClick={() => setMode("codechef")}
-            className={`px-3 py-1 rounded-full text-xs font-mono font-bold transition-all ${
+            className={`px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all ${
               mode === "codechef" ? "bg-purple-700 text-white" : "text-[#5F6368] hover:text-[#111111]"
             }`}
           >
             CODECHEF 3D
           </button>
         </div>
-      </div>
 
-      {/* Telemetry Stats Banner */}
-      <div className="absolute top-5 right-5 text-right pointer-events-none z-10">
-        <span className="text-[10px] font-mono text-[#5F6368] block">
-          {mode === "github"
-            ? "REAL GITHUB COMMITS"
-            : mode === "leetcode"
-            ? "LEETCODE SOLVED MATRIX"
-            : "CODECHEF RATING PROGRESSION"}
-        </span>
-        <span
-          className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded border ${
-            mode === "github"
-              ? "text-emerald-800 bg-emerald-50/90 border-emerald-200"
+        {/* Telemetry Stats Pill (Right-aligned or below on mobile without collision) */}
+        <div className="flex items-center gap-2 pointer-events-none">
+          <span
+            className={`text-[10px] sm:text-[11px] font-mono font-bold px-2.5 py-1 rounded-full border bg-white/95 backdrop-blur-md shadow-xs ${
+              mode === "github"
+                ? "text-emerald-800 border-emerald-200"
+                : mode === "leetcode"
+                ? "text-amber-800 border-amber-200"
+                : "text-purple-800 border-purple-200"
+            }`}
+          >
+            {mode === "github"
+              ? "451+ COMMITS"
               : mode === "leetcode"
-              ? "text-amber-800 bg-amber-50/90 border-amber-200"
-              : "text-purple-800 bg-purple-50/90 border-purple-200"
-          }`}
-        >
-          {mode === "github"
-            ? "451+ VERIFIED COMMITS"
-            : mode === "leetcode"
-            ? "400+ PROBLEMS · 1562 RATING"
-            : "3★ · PEAK 1602 · RANK 392"}
-        </span>
+              ? "400+ PROBLEMS · 1562 RATING"
+              : "3★ · PEAK 1602 · RANK 392"}
+          </span>
+        </div>
       </div>
 
       {/* Interactive Tooltip Banner */}
