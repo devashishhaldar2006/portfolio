@@ -436,7 +436,7 @@ export function MetaMesh3D() {
         {mode === "codechef" ? (
           activeContest ? (
             <span className="text-xs font-mono font-bold text-[#111111] bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[#E4E4E0] shadow-md flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-purple-600 animate-ping" />
+              <span className="w-2 h-2 rounded-full bg-purple-600" />
               <span>
                 {activeContest.name}: <strong className="text-purple-700">{activeContest.rating}</strong> (Rank {activeContest.rank}) on {activeContest.date}
               </span>
@@ -449,7 +449,7 @@ export function MetaMesh3D() {
         ) : activeInfo ? (
           <span className="text-xs font-mono font-bold text-[#111111] bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[#E4E4E0] shadow-md flex items-center gap-2">
             <span
-              className={`w-2 h-2 rounded-full animate-ping ${
+              className={`w-2 h-2 rounded-full ${
                 mode === "github" ? "bg-emerald-600" : "bg-amber-600"
               }`}
             />

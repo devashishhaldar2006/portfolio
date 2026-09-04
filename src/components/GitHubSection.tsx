@@ -572,9 +572,6 @@ export function GitHubSection() {
                     { code: "START165", name: "Starters 165", rating: 1595, rank: 440, x: 770, y: 39, date: "Dec 2024" },
                   ].map((c) => (
                     <g key={c.code} className="cursor-pointer group">
-                      {c.isPeak && (
-                        <circle cx={c.x} cy={c.y} r="10" fill="none" stroke="#F59E0B" strokeWidth="2" className="animate-ping" />
-                      )}
                       <circle
                         cx={c.x}
                         cy={c.y}

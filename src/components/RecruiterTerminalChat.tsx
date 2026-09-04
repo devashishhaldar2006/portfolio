@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Terminal, Send, Sparkles, Bot, User, Minimize2, Maximize2, RefreshCw, ArrowUpRight } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface ChatMessage {
@@ -22,20 +23,26 @@ export function RecruiterTerminalChat() {
     {
       role: "system",
       content:
-        "DEVASHISH-CORE v2.4 (Mistral AI engine)\nSystem initialized. Loaded candidate knowledge graph: PSIT CSE (8.1 CGPA) · QuantFlow (1.48M ticks/s C++20) · HackCentral · LeetCode 400+.\nAsk any technical, architectural, or recruitment question.",
-      time: "00:00:01",
+        "**DEVASHISH-CORE v2.4 (Mistral AI engine)**\nSystem initialized. Loaded candidate knowledge graph: PSIT CSE (8.1 CGPA) · QuantFlow (1.48M ticks/s C++20) · HackCentral · LeetCode 400+.\nAsk any technical, architectural, or recruitment question.",
+      time: "",
     },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  // Scroll strictly inside the terminal box, NEVER scrolling the whole browser window
+  const scrollTerminalToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    scrollTerminalToBottom();
   }, [messages, loading]);
 
   const handleSend = async (userText?: string) => {
@@ -141,7 +148,10 @@ export function RecruiterTerminalChat() {
           </div>
 
           {/* Terminal Output Scroll Area */}
-          <div className="p-6 md:p-8 h-[380px] overflow-y-auto font-mono text-xs md:text-sm bg-[#FAFAF8] space-y-4">
+          <div
+            ref={chatContainerRef}
+            className="p-6 md:p-8 h-[380px] overflow-y-auto font-mono text-xs md:text-sm bg-[#FAFAF8] space-y-4 scroll-smooth"
+          >
             {messages.map((m, idx) => (
               <div
                 key={idx}
@@ -153,13 +163,13 @@ export function RecruiterTerminalChat() {
                     : "bg-[#FFFFFF] text-[#111111] border border-[#E4E4E0] shadow-xs"
                 }`}
               >
-                <div className="flex items-center justify-between text-[10px] opacity-70 mb-1 pb-1 border-b border-white/10">
+                <div className="flex items-center justify-between text-[10px] opacity-70 mb-1.5 pb-1 border-b border-white/10">
                   <span className="font-bold uppercase tracking-wider">
                     {m.role === "user" ? "YOU (RECRUITER / VISITOR)" : m.role === "system" ? "SYSTEM KERNEL" : "DEVASHISH-CORE"}
                   </span>
                 </div>
-                <div className="whitespace-pre-wrap leading-relaxed font-mono text-xs md:text-[13px]">
-                  {m.content}
+                <div className="leading-relaxed font-mono text-xs md:text-[13px] prose prose-sm max-w-none text-inherit prose-headings:text-inherit prose-headings:font-bold prose-p:my-1.5 prose-ul:my-1.5 prose-ul:pl-4 prose-li:my-0.5 prose-strong:text-inherit prose-strong:font-bold prose-code:text-emerald-700 prose-code:bg-emerald-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-a:text-emerald-700 prose-a:underline">
+                  <ReactMarkdown>{m.content}</ReactMarkdown>
                 </div>
               </div>
             ))}
@@ -170,7 +180,6 @@ export function RecruiterTerminalChat() {
                 <span>EVALUATING QUERY WITH MISTRAL AI...</span>
               </div>
             )}
-            <div ref={bottomRef} />
           </div>
 
           {/* Preset Suggested Prompts */}
