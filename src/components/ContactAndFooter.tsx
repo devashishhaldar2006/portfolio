@@ -81,14 +81,12 @@ export function ContactAndFooter() {
                 </a>
               </div>
 
-              {/* Location & Time Indicator */}
+              {/* Location Indicator */}
               <div className="mt-12 pt-6 border-t border-[#EBEBE7] flex flex-wrap items-center justify-between text-xs font-mono text-[#888C90] gap-4">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-3.5 h-3.5 text-[#5F6368]" />
                   <span className="text-[#111111] font-semibold">Lucknow, Uttar Pradesh, India 226012</span>
-                  <span>(IST / UTC+5:30)</span>
                 </div>
-                <div>RESPONSE TIME: &lt; 12 HOURS</div>
               </div>
             </div>
           </div>
@@ -106,7 +104,7 @@ export function ContactAndFooter() {
               </span>
             </div>
             <p className="text-xs font-mono text-[#5F6368] mt-1">
-              Software Engineer · Quant Developer · Builder · © 2026
+              Software Engineer · Full Stack Developer · Builder · © 2026
             </p>
           </div>
 

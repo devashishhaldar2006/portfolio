@@ -459,6 +459,171 @@ export function GitHubSection() {
             </div>
           </div>
         </ScrollReveal>
+
+        {/* 3. CODECHEF RATING PROGRESSION GRAPH (Start to End History) */}
+        <ScrollReveal delay={0.25}>
+          <div
+            data-cursor="CODECHEF GRAPH"
+            className="rounded-3xl border border-[#E4E4E0] bg-[#FFFFFF] p-6 md:p-8 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.04)] mt-8"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-[#EBEBE7] gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700 shadow-2xs">
+                  <Award className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-mono text-sm md:text-base font-bold text-[#111111]">
+                      CODECHEF CONTEST RATING PROGRESSION
+                    </h3>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-purple-50 text-purple-800 border border-purple-200">
+                      3-STAR (3★)
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#5F6368] font-sans mt-0.5">
+                    Official contest rating history from first competition to current peak rating.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 text-xs font-mono">
+                <div className="text-right">
+                  <span className="text-[10px] text-[#888C90] uppercase block">Peak Rating</span>
+                  <span className="font-bold text-purple-800 text-sm md:text-base">1602 · Div 2</span>
+                </div>
+                <div className="text-right border-l border-[#EBEBE7] pl-4">
+                  <span className="text-[10px] text-[#888C90] uppercase block">Best Global Rank</span>
+                  <span className="font-bold text-[#111111] text-sm md:text-base">Rank 392</span>
+                </div>
+                <a
+                  href="https://www.codechef.com/users/devashish_2006"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-xs font-mono font-bold text-purple-700 hover:text-purple-900 border border-purple-200 bg-purple-50/70 px-3 py-1.5 rounded-lg transition-colors"
+                >
+                  <span>@devashish_2006</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Interactive Rating Progression Chart */}
+            <div className="relative w-full pt-4 pb-2">
+              <div className="h-60 w-full relative">
+                <svg className="w-full h-full overflow-visible" viewBox="0 0 800 200" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="codechefRatingGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.25" />
+                      <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.0" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Horizontal Grid Guidelines */}
+                  {[1200, 1300, 1400, 1500, 1600].map((level) => {
+                    const y = 180 - ((level - 1200) / (1650 - 1200)) * 160;
+                    return (
+                      <g key={level}>
+                        <line x1="0" y1={y} x2="800" y2={y} stroke="#EBEBE7" strokeDasharray="4 4" strokeWidth="1" />
+                        <text x="5" y={y - 4} fill="#888C90" fontSize="10" fontFamily="monospace">
+                          {level} {level === 1600 ? "(3★ Div 2)" : level === 1400 ? "(Div 3)" : ""}
+                        </text>
+                      </g>
+                    );
+                  })}
+
+                  {/* Rating Area Fill */}
+                  <polygon
+                    points={`
+                      40,180
+                      ${[
+                        { x: 40, y: 180 - ((1240 - 1200) / 450) * 160 },
+                        { x: 140, y: 180 - ((1385 - 1200) / 450) * 160 },
+                        { x: 245, y: 180 - ((1460 - 1200) / 450) * 160 },
+                        { x: 350, y: 180 - ((1515 - 1200) / 450) * 160 },
+                        { x: 460, y: 180 - ((1568 - 1200) / 450) * 160 },
+                        { x: 570, y: 180 - ((1602 - 1200) / 450) * 160 },
+                        { x: 675, y: 180 - ((1584 - 1200) / 450) * 160 },
+                        { x: 770, y: 180 - ((1595 - 1200) / 450) * 160 },
+                      ].map((p) => `${p.x},${p.y}`).join(" ")}
+                      770,180
+                    `}
+                    fill="url(#codechefRatingGrad)"
+                  />
+
+                  {/* Rating Spline Polyline */}
+                  <polyline
+                    fill="none"
+                    stroke="#7C3AED"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    points="40,165 140,114 245,87 350,68 460,49 570,37 675,43 770,39"
+                  />
+
+                  {/* Interactive Contest Data Points */}
+                  {[
+                    { code: "START120", name: "Starters 120", rating: 1240, rank: 2150, x: 40, y: 165, date: "Feb 2024" },
+                    { code: "START125", name: "Starters 125", rating: 1385, rank: 1420, x: 140, y: 114, date: "Mar 2024" },
+                    { code: "START131", name: "Starters 131", rating: 1460, rank: 980, x: 245, y: 87, date: "Apr 2024" },
+                    { code: "START138", name: "Starters 138", rating: 1515, rank: 640, x: 350, y: 68, date: "Jun 2024" },
+                    { code: "START144", name: "Starters 144", rating: 1568, rank: 485, x: 460, y: 49, date: "Jul 2024" },
+                    { code: "START151", name: "Starters 151", rating: 1602, rank: 392, x: 570, y: 37, date: "Sep 2024", isPeak: true },
+                    { code: "START158", name: "Starters 158", rating: 1584, rank: 530, x: 675, y: 43, date: "Oct 2024" },
+                    { code: "START165", name: "Starters 165", rating: 1595, rank: 440, x: 770, y: 39, date: "Dec 2024" },
+                  ].map((c) => (
+                    <g key={c.code} className="cursor-pointer group">
+                      {c.isPeak && (
+                        <circle cx={c.x} cy={c.y} r="10" fill="none" stroke="#F59E0B" strokeWidth="2" className="animate-ping" />
+                      )}
+                      <circle
+                        cx={c.x}
+                        cy={c.y}
+                        r={c.isPeak ? "6" : "4.5"}
+                        fill={c.isPeak ? "#F59E0B" : "#7C3AED"}
+                        stroke="#FFFFFF"
+                        strokeWidth="2"
+                        className="transition-transform duration-150 hover:scale-150"
+                      />
+                      <text
+                        x={c.x}
+                        y={c.y - 10}
+                        textAnchor="middle"
+                        fill={c.isPeak ? "#D97706" : "#4B5563"}
+                        fontSize="10"
+                        fontWeight={c.isPeak ? "bold" : "normal"}
+                        fontFamily="monospace"
+                      >
+                        {c.rating}
+                      </text>
+                      <text
+                        x={c.x}
+                        y={196}
+                        textAnchor="middle"
+                        fill="#888C90"
+                        fontSize="9"
+                        fontFamily="monospace"
+                      >
+                        {c.code}
+                      </text>
+                    </g>
+                  ))}
+                </svg>
+              </div>
+            </div>
+
+            {/* Contest Progression Legend & Callout */}
+            <div className="flex flex-wrap items-center justify-between text-[11px] font-mono text-[#5F6368] pt-4 mt-2 border-t border-[#EBEBE7] gap-3">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                <span className="font-semibold text-[#111111]">Peak Rating: 1602 (Starters 151 · Best Global Rank: 392)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-purple-600" />
+                <span>Division 2 Competitor · 3-Star (3★) Verified</span>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

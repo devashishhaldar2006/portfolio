@@ -14,25 +14,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Devashish Haldar — Software Engineer · Quant Developer · Builder",
+  title: "Devashish Haldar — Software Engineer · Full Stack Developer · Builder",
   description:
-    "Building systems at the intersection of high-performance software, quantitative finance, and autonomous AI agents. Creator of QuantFlow (1.48M+ ticks/sec backtesting engine).",
+    "Building systems at the intersection of modern full-stack architectures, C++20 systems, and autonomous AI agents. Creator of HackCentral, QuantFlow, and Career Connect.",
   keywords: [
     "Devashish Haldar",
-    "Quant Developer",
+    "Full Stack Developer",
     "Software Engineer",
-    "Quantitative Finance",
+    "React",
+    "Next.js",
+    "Node.js",
     "QuantFlow",
     "C++20",
-    "LangGraph",
-    "High Performance Systems",
+    "AI Agents",
   ],
   authors: [{ name: "Devashish Haldar", url: "https://github.com/devashishhaldar2006" }],
   openGraph: {
-    title: "Devashish Haldar — Software Engineer · Quant Developer · Builder",
+    title: "Devashish Haldar — Software Engineer · Full Stack Developer · Builder",
     description:
-      "Building systems at the intersection of software, quantitative finance, and AI.",
-    url: "https://quantflow.hackcentral.me",
+      "Building systems at the intersection of modern full-stack engineering, C++20 systems, and AI.",
+    url: "https://hackcentral.me",
     siteName: "Devashish Haldar Portfolio",
     type: "website",
   },

@@ -49,7 +49,7 @@ export function Navbar() {
           <span className="w-2 h-2 rounded-full bg-emerald-600 group-hover:scale-125 transition-transform" />
           <span className="font-mono tracking-wider text-[11px] md:text-xs">DEVASHISH</span>
           <span className="hidden sm:inline-block text-[11px] font-mono text-[#5F6368] font-normal border-l border-[#E4E4E0] pl-2">
-            QUANT × DEV
+            FULL STACK DEV
           </span>
         </a>
 

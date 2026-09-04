@@ -23,19 +23,19 @@ export function Hero() {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E4E4E0] shadow-xs text-xs font-mono text-[#5F6368]">
             <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-            <span className="text-[#111111] font-semibold">SOFTWARE ENGINEER · QUANT DEVELOPER</span>
+            <span className="text-[#111111] font-semibold">SOFTWARE ENGINEER · FULL STACK DEVELOPER</span>
             <span className="text-[#888C90]">/</span>
             <span>PSIT CSE (AI & ML)</span>
           </div>
 
           <div className="hidden sm:flex items-center gap-3 text-xs font-mono text-[#5F6368]">
+            <span className="text-[#111111] font-bold">REACT / NEXT.JS</span>
+            <span>•</span>
+            <span className="text-[#111111] font-bold">NODE / EXPRESS</span>
+            <span>•</span>
             <span className="text-[#111111] font-bold">C++20</span>
             <span>•</span>
-            <span className="text-[#111111] font-bold">NEXT.JS 16</span>
-            <span>•</span>
-            <span className="text-[#111111] font-bold">LANGGRAPH</span>
-            <span>•</span>
-            <span className="text-[#111111] font-bold">SOCKET.IO</span>
+            <span className="text-[#111111] font-bold">AI AGENTS</span>
           </div>
         </div>
       </ScrollReveal>
@@ -49,17 +49,17 @@ export function Hero() {
           </h1>
 
           <div className="mt-6 flex items-center gap-3 text-sm md:text-lg font-mono font-medium text-[#5F6368]">
-            <AnimatedWords text="Software Engineer · Quant Developer · Builder" delay={0.35} />
+            <AnimatedWords text="Software Engineer · Full Stack Developer · Builder" delay={0.35} />
           </div>
 
           <p className="mt-4 text-lg md:text-2xl text-[#111111] font-sans font-normal max-w-2xl leading-snug tracking-tight">
             Building high-performance systems at the intersection of{" "}
             <span className="font-semibold underline decoration-emerald-400 decoration-2 underline-offset-4">
-              C++20 low-latency engines
+              full-stack architectures
             </span>
             ,{" "}
             <span className="font-semibold underline decoration-emerald-400 decoration-2 underline-offset-4">
-              quantitative finance
+              C++20 systems
             </span>
             , and{" "}
             <span className="font-semibold underline decoration-emerald-400 decoration-2 underline-offset-4">

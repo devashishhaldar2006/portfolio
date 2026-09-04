@@ -42,27 +42,34 @@ export function RecruiterTerminalChat() {
     const textToSend = userText || input;
     if (!textToSend.trim() || loading) return;
 
-    const timeStr = new Date().toLocaleTimeString("en-US", { hour12: false });
-    const userMsg: ChatMessage = { role: "user", content: textToSend, time: timeStr };
+    const userMsg: ChatMessage = { role: "user", content: textToSend, time: "" };
 
     setMessages((prev) => [...prev, userMsg]);
     if (!userText) setInput("");
     setLoading(true);
 
     try {
+      // Pass full conversation history for context-aware multi-turn ChatGPT experience
+      const historyPayload = messages.map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
+
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: textToSend }),
+        body: JSON.stringify({
+          message: textToSend,
+          conversationHistory: historyPayload,
+        }),
       });
 
       const data = await res.json();
       const replyStr = data.reply || "Unable to retrieve response from candidate inference engine.";
-      const respTime = new Date().toLocaleTimeString("en-US", { hour12: false });
 
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: replyStr, time: respTime },
+        { role: "assistant", content: replyStr, time: "" },
       ]);
     } catch (err) {
       setMessages((prev) => [
@@ -70,7 +77,7 @@ export function RecruiterTerminalChat() {
         {
           role: "assistant",
           content: "Error establishing connection with candidate profile core.",
-          time: timeStr,
+          time: "",
         },
       ]);
     } finally {
@@ -126,9 +133,9 @@ export function RecruiterTerminalChat() {
             </div>
 
             <div className="flex items-center gap-2 text-[11px] font-mono text-[#888C90]">
-              <span className="hidden sm:inline-block">STATUS: ONLINE</span>
-              <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">
-                LATENCY: &lt; 50ms
+              <span className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                ONLINE
               </span>
             </div>
           </div>
@@ -150,7 +157,6 @@ export function RecruiterTerminalChat() {
                   <span className="font-bold uppercase tracking-wider">
                     {m.role === "user" ? "YOU (RECRUITER / VISITOR)" : m.role === "system" ? "SYSTEM KERNEL" : "DEVASHISH-CORE"}
                   </span>
-                  <span>{m.time}</span>
                 </div>
                 <div className="whitespace-pre-wrap leading-relaxed font-mono text-xs md:text-[13px]">
                   {m.content}
