@@ -358,21 +358,33 @@ export function GitHubSection() {
                 </span>
               </div>
 
-              <div className="flex items-center gap-4 text-xs font-mono">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-emerald-700 font-bold">168</span>
-                  <span className="text-[#888C90]">Easy</span>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-4 text-xs font-mono">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-emerald-700 font-bold">168</span>
+                    <span className="text-[#888C90]">Easy</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-amber-700 font-bold">204</span>
+                    <span className="text-[#888C90]">Med</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-rose-700 font-bold">40</span>
+                    <span className="text-[#888C90]">Hard</span>
+                  </div>
+                  <span className="text-[#888C90]">|</span>
+                  <span className="text-blue-700 font-semibold">Top 15%</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-amber-700 font-bold">204</span>
-                  <span className="text-[#888C90]">Med</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-rose-700 font-bold">40</span>
-                  <span className="text-[#888C90]">Hard</span>
-                </div>
-                <span className="text-[#888C90]">|</span>
-                <span className="text-blue-700 font-semibold">Top 15% Percentile</span>
+
+                <a
+                  href="https://leetcode.com/u/devashishcodes/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-xs font-mono font-bold text-amber-700 hover:text-amber-900 border border-amber-200 bg-amber-50/80 px-3 py-1.5 rounded-lg transition-colors ml-auto sm:ml-0"
+                >
+                  <span>@devashishcodes</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
 
@@ -496,12 +508,12 @@ export function GitHubSection() {
                   <span className="font-bold text-[#111111] text-sm md:text-base">Rank 392</span>
                 </div>
                 <a
-                  href="https://www.codechef.com/users/devashish_2006"
+                  href="https://www.codechef.com/users/devashishcodes"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 text-xs font-mono font-bold text-purple-700 hover:text-purple-900 border border-purple-200 bg-purple-50/70 px-3 py-1.5 rounded-lg transition-colors"
                 >
-                  <span>@devashish_2006</span>
+                  <span>@devashishcodes</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>

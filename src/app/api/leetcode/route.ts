@@ -5,7 +5,7 @@ export async function GET() {
     // Official LeetCode GraphQL payload for verified candidate profile
     const query = `
       query userPublicProfile {
-        matchedUser(username: "devashishhaldar2006") {
+        matchedUser(username: "devashishcodes") {
           username
           profile {
             ranking
@@ -19,7 +19,7 @@ export async function GET() {
             }
           }
         }
-        userContestRanking(username: "devashishhaldar2006") {
+        userContestRanking(username: "devashishcodes") {
           rating
           globalRanking
           totalParticipants

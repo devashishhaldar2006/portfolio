@@ -24,7 +24,7 @@ const contestHistory: CodeChefContest[] = [
 export async function GET() {
   try {
     return NextResponse.json({
-      handle: "devashish_2006",
+      handle: "devashishcodes",
       stars: "3★",
       currentRating: 1595,
       peakRating: 1602,

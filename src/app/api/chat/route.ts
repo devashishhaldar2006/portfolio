@@ -24,7 +24,7 @@ Candidate Dossier & Facts (Never hallucinate outside these facts):
 - Role: Software Engineer · Full Stack Developer · Systems Builder
 - Born: 2006 (19–20 years old)
 - Location: Lucknow, Uttar Pradesh, India 226012 (Open to remote roles and global relocation)
-- Contact: workfordevashishhaldar@gmail.com | +91 9336009951 | GitHub: devashishhaldar2006 | LinkedIn: devashish-haldar-dev
+- Contact: workfordevashishhaldar@gmail.com | +91 9336009951 | GitHub: devashishhaldar2006 | LinkedIn: devashish-haldar-dev | CodeChef: devashishcodes | LeetCode: devashishcodes
 - Education: B.Tech in Computer Science and Engineering (Artificial Intelligence and Machine Learning), Pranveer Singh Institute of Technology (PSIT), Kanpur (Sep 2024 — Apr 2028, currently in 2nd year). Cumulative GPA: 8.1 / 10.0.
 - Core Stacks: React 19, Next.js 16, Node.js, Express.js, TypeScript, JavaScript, Python, C++20, C, MongoDB, PostgreSQL (Supabase), Redis, Docker, AWS (EC2, S3), Socket.IO, WebRTC (Stream.io), LangGraph, Tailwind CSS.
 
@@ -35,8 +35,8 @@ Major Projects:
 
 Competitive & Honors:
 - Deviathon National Hackathon 1st Place Category Winner (GLA University) for AI meeting analysis platform.
-- LeetCode: 400+ problems solved (168 Easy, 204 Medium, 40 Hard) with a contest rating of 1562.
-- CodeChef: 3-Star rated programmer with a peak rating of 1602 (best global rank: 392).
+- LeetCode: Handle @devashishcodes (https://leetcode.com/u/devashishcodes/), 400+ problems solved (168 Easy, 204 Medium, 40 Hard) with a contest rating of 1562.
+- CodeChef: Handle @devashishcodes (https://www.codechef.com/users/devashishcodes), 3-Star rated programmer with a peak rating of 1602 (best global rank: 392).
 - Certifications: IBM Generative AI & LLMs (100% Grade, Coursera), Decode C++ with DSA (Physics Wallah).`;
 
     // 1. Attempt live Mistral AI call with conversation context
@@ -125,7 +125,8 @@ Competitive & Honors:
     // CodeChef rating graph inquiry
     if (q.includes("codechef") || (q.includes("rating") && q.includes("graph")) || q.includes("contest")) {
       return NextResponse.json({
-        reply: `Devashish has an active competitive programming track on CodeChef under the handle **@devashish_2006**:
+        reply: `Devashish has an active competitive programming track on CodeChef under the handle **@devashishcodes**:
+- **Profile:** [codechef.com/users/devashishcodes](https://www.codechef.com/users/devashishcodes)
 - **Division & Status:** 3-Star Coder (3★)
 - **Peak Rating:** 1602 (Division 2)
 - **Best Global Rank:** 392 (Starters 151)
@@ -138,7 +139,7 @@ Competitive & Honors:
     // LeetCode inquiry
     if (q.includes("leetcode") || q.includes("dsa") || q.includes("problem")) {
       return NextResponse.json({
-        reply: `On LeetCode (@devashishhaldar2006), Devashish has solved **400+ problems**:
+        reply: `On LeetCode under the handle **@devashishcodes** ([leetcode.com/u/devashishcodes](https://leetcode.com/u/devashishcodes/)), Devashish has solved **400+ problems**:
 - **Distribution:** 168 Easy, 204 Medium, and 40 Hard problems.
 - **Contest Rating:** 1562 with an acceptance rate over 72%.
 - **Core Topics:** Graph traversals, dynamic programming, tree recursion, monotonic stacks, and sliding window memory optimizations.`,
@@ -190,6 +191,8 @@ Competitive & Honors:
 - **Phone:** +91 9336009951
 - **LinkedIn:** [linkedin.com/in/devashish-haldar-dev](https://www.linkedin.com/in/devashish-haldar-dev/)
 - **GitHub:** [github.com/devashishhaldar2006](https://github.com/devashishhaldar2006)
+- **LeetCode:** [leetcode.com/u/devashishcodes](https://leetcode.com/u/devashishcodes/) (@devashishcodes)
+- **CodeChef:** [codechef.com/users/devashishcodes](https://www.codechef.com/users/devashishcodes) (@devashishcodes)
 - **Location:** Lucknow, Uttar Pradesh, India (Available for remote and on-site roles globally).`,
         model: "devashish-core-dynamic",
       });

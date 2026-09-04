@@ -108,7 +108,7 @@ export function ContactAndFooter() {
             </p>
           </div>
 
-          <div className="flex items-center gap-6 text-xs font-mono text-[#5F6368]">
+          <div className="flex flex-wrap items-center gap-5 text-xs font-mono text-[#5F6368]">
             <a
               href="https://github.com/devashishhaldar2006"
               target="_blank"
@@ -116,6 +116,22 @@ export function ContactAndFooter() {
               className="hover:text-[#111111] transition-colors"
             >
               GitHub
+            </a>
+            <a
+              href="https://leetcode.com/u/devashishcodes/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#111111] transition-colors"
+            >
+              LeetCode
+            </a>
+            <a
+              href="https://www.codechef.com/users/devashishcodes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#111111] transition-colors"
+            >
+              CodeChef
             </a>
             <a
               href="https://www.linkedin.com/in/devashish-haldar-dev/"
