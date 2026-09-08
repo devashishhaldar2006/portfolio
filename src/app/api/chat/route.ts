@@ -37,7 +37,7 @@ Competitive & Honors:
 - Deviathon National Hackathon 1st Place Category Winner (GLA University) for AI meeting analysis platform.
 - LeetCode: Handle @devashishcodes (https://leetcode.com/u/devashishcodes/), 400+ problems solved (168 Easy, 204 Medium, 40 Hard) with a contest rating of 1562.
 - CodeChef: Handle @devashishcodes (https://www.codechef.com/users/devashishcodes), 3-Star rated programmer with a peak rating of 1602 (best global rank: 392).
-- Certifications: IBM Generative AI & LLMs (100% Grade, Coursera), Decode C++ with DSA (Physics Wallah).`;
+- Certifications: IBM Generative AI & LLMs (100% Grade, Coursera), Exam Prep: AWS Certified Solutions Architect - Associate (94.73% Grade, Amazon Web Services on Coursera).`;
 
     // 1. Attempt live Mistral AI call with conversation context
     if (apiKey) {

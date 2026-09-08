@@ -78,11 +78,11 @@ const certifications = [
     url: "https://coursera.org/share/ed2e8d698c630fbc0906d82514f61ca5",
   },
   {
-    title: "Decode C++ with DSA",
-    issuer: "Physics Wallah",
-    grade: "Comprehensive Certification",
-    desc: "Completed comprehensive training in C++, memory management, and data structures.",
-    url: "https://pwskills.com/learn/certificate/1972add0-f5d0-4dad-8b4d-a80581724280/",
+    title: "Exam Prep: AWS Certified Solutions Architect - Associate",
+    issuer: "Amazon Web Services (Coursera)",
+    grade: "94.73% Grade",
+    desc: "Cloud architecture, resilient multi-tier VPC design, IAM security, S3 storage, and high-availability systems on AWS.",
+    url: "https://coursera.org/share/d7756e07f2cd7f91361371549c41f1d3",
   },
 ];
 
