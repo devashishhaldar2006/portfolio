@@ -6,8 +6,17 @@ import { ArrowUpRight, Code2 } from "lucide-react";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [modalActive, setModalActive] = useState(false);
 
   useEffect(() => {
+    const checkModal = () => {
+      setModalActive(document.body.getAttribute("data-modal-open") === "true");
+    };
+
+    window.addEventListener("resume-modal-toggle", checkModal as EventListener);
+    const observer = new MutationObserver(checkModal);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["data-modal-open"] });
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
@@ -28,11 +37,17 @@ export function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resume-modal-toggle", checkModal as EventListener);
+      observer.disconnect();
+    };
   }, []);
 
+  if (modalActive) return null;
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 md:pt-6 transition-all duration-300 pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-40 flex justify-center px-4 pt-4 md:pt-6 transition-all duration-300 pointer-events-none">
       <nav
         className={`pointer-events-auto flex items-center justify-between gap-6 px-4 md:px-6 py-2.5 rounded-full border transition-all duration-300 ${
           scrolled

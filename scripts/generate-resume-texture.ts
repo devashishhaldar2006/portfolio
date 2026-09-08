@@ -2,72 +2,71 @@ import { createCanvas } from 'canvas';
 import fs from 'fs';
 import path from 'path';
 
-// 8.5 x 11 aspect ratio rendered at crystal-clear 2x print resolution: 1700 x 2200
-const width = 1700;
-const height = 2200;
+// Ultra-sharp 4K print-grade resolution: 2550 x 3300 (Standard 8.5 x 11 at 300 DPI)
+const width = 2550;
+const height = 3300;
 const canvas = createCanvas(width, height);
 const ctx = canvas.getContext('2d');
 
-// Crisp white background
+// Pure paper background
 ctx.fillStyle = '#FFFFFF';
 ctx.fillRect(0, 0, width, height);
 
-// Margins
-const leftMargin = 100;
-const rightMargin = width - 100;
-const contentWidth = rightMargin - leftMargin;
+// Margins calibrated for crisp readability
+const leftMargin = 140;
+const rightMargin = width - 140;
 
-let y = 110;
+let y = 160;
 
 // Header Name
-ctx.fillStyle = '#111111';
-ctx.font = 'bold 58px sans-serif';
+ctx.fillStyle = '#0F172A';
+ctx.font = 'bold 84px "Segoe UI", Arial, sans-serif';
 ctx.textAlign = 'center';
 ctx.fillText('Devashish Haldar', width / 2, y);
 
-y += 40;
-ctx.font = '26px sans-serif';
-ctx.fillStyle = '#4B5563';
+y += 56;
+ctx.font = '38px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#334155';
 ctx.fillText('Lucknow, Uttar Pradesh, India 226012', width / 2, y);
 
-y += 36;
-ctx.font = '24px sans-serif';
+y += 50;
+ctx.font = 'bold 34px "Segoe UI", Arial, sans-serif';
 ctx.fillStyle = '#1D4ED8';
 const contactStr = '+91 9336009951   |   workfordevashishhaldar@gmail.com   |   github.com/devashishhaldar2006   |   linkedin.com/in/devashish-haldar-dev';
 ctx.fillText(contactStr, width / 2, y);
 
-y += 40;
+y += 60;
 
 function drawSectionHeader(title: string) {
-  y += 12;
+  y += 20;
   ctx.textAlign = 'left';
-  ctx.font = 'bold 28px sans-serif';
-  ctx.fillStyle = '#111111';
+  ctx.font = 'bold 42px "Segoe UI", Arial, sans-serif';
+  ctx.fillStyle = '#0F172A';
   ctx.fillText(title.toUpperCase(), leftMargin, y);
   
-  y += 10;
-  ctx.strokeStyle = '#111111';
-  ctx.lineWidth = 2.5;
+  y += 14;
+  ctx.strokeStyle = '#0F172A';
+  ctx.lineWidth = 3.5;
   ctx.beginPath();
   ctx.moveTo(leftMargin, y);
   ctx.lineTo(rightMargin, y);
   ctx.stroke();
-  y += 28;
+  y += 42;
 }
 
 function drawBullet(segments: Array<{ text: string; bold?: boolean; italic?: boolean; color?: string }>) {
-  ctx.fillStyle = '#111111';
-  ctx.font = 'bold 22px sans-serif';
-  ctx.fillText('•', leftMargin + 16, y);
+  ctx.fillStyle = '#0F172A';
+  ctx.font = 'bold 34px "Segoe UI", Arial, sans-serif';
+  ctx.fillText('•', leftMargin + 24, y);
 
-  let curX = leftMargin + 42;
+  let curX = leftMargin + 60;
   const maxW = rightMargin;
 
   for (const seg of segments) {
     const fontWeight = seg.bold ? 'bold' : 'normal';
     const fontStyle = seg.italic ? 'italic' : 'normal';
-    ctx.font = `${fontStyle} ${fontWeight} 23px sans-serif`;
-    ctx.fillStyle = seg.color || '#374151';
+    ctx.font = `${fontStyle} ${fontWeight} 34px "Segoe UI", Arial, sans-serif`;
+    ctx.fillStyle = seg.color || '#1E293B';
 
     const words = seg.text.split(' ');
     for (let i = 0; i < words.length; i++) {
@@ -75,73 +74,73 @@ function drawBullet(segments: Array<{ text: string; bold?: boolean; italic?: boo
       const wordWidth = ctx.measureText(word).width;
 
       if (curX + wordWidth > maxW) {
-        y += 32;
-        curX = leftMargin + 42;
+        y += 48;
+        curX = leftMargin + 60;
       }
       ctx.fillText(word, curX, y);
       curX += wordWidth;
     }
   }
-  y += 35;
+  y += 54;
 }
 
 // 1. EDUCATION
 drawSectionHeader('Education');
 
-ctx.font = 'bold 26px sans-serif';
-ctx.fillStyle = '#111111';
+ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#0F172A';
 ctx.fillText('Pranveer Singh Institute of Technology, Kanpur, Uttar Pradesh', leftMargin, y);
 
-ctx.font = '24px sans-serif';
-ctx.fillStyle = '#4B5563';
+ctx.font = '34px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#475569';
 const d1 = 'Sep 2024 -- Apr 2028';
 ctx.fillText(d1, rightMargin - ctx.measureText(d1).width, y);
-y += 30;
+y += 44;
 
-ctx.font = 'italic 23px sans-serif';
+ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
 ctx.fillText('B.Tech. in Computer Science and Engineering (Artificial Intelligence and Machine Learning)', leftMargin, y);
-y += 28;
+y += 42;
 
-ctx.font = 'bold 23px sans-serif';
-ctx.fillText('Cumulative GPA: ', leftMargin + 20, y);
+ctx.font = 'bold 34px "Segoe UI", Arial, sans-serif';
+ctx.fillText('Cumulative GPA: ', leftMargin + 30, y);
 const gpaW = ctx.measureText('Cumulative GPA: ').width;
-ctx.font = '23px sans-serif';
-ctx.fillText('8.1 / 10.0', leftMargin + 20 + gpaW, y);
-y += 38;
+ctx.font = '34px "Segoe UI", Arial, sans-serif';
+ctx.fillText('8.1 / 10.0', leftMargin + 30 + gpaW, y);
+y += 56;
 
-ctx.font = 'bold 26px sans-serif';
-ctx.fillStyle = '#111111';
+ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#0F172A';
 ctx.fillText('Vishwanath Academy, Lucknow, Uttar Pradesh', leftMargin, y);
 
-ctx.font = '24px sans-serif';
-ctx.fillStyle = '#4B5563';
+ctx.font = '34px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#475569';
 const d2 = 'Apr 2023 -- Mar 2024';
 ctx.fillText(d2, rightMargin - ctx.measureText(d2).width, y);
-y += 30;
+y += 44;
 
-ctx.font = 'italic 23px sans-serif';
+ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
 ctx.fillText('Senior Secondary (Class XII), CBSE -- Science Stream', leftMargin, y);
-y += 28;
+y += 42;
 
-ctx.font = 'bold 23px sans-serif';
-ctx.fillText('Percentage: ', leftMargin + 20, y);
+ctx.font = 'bold 34px "Segoe UI", Arial, sans-serif';
+ctx.fillText('Percentage: ', leftMargin + 30, y);
 const perW = ctx.measureText('Percentage: ').width;
-ctx.font = '23px sans-serif';
-ctx.fillText('88.2%', leftMargin + 20 + perW, y);
-y += 38;
+ctx.font = '34px "Segoe UI", Arial, sans-serif';
+ctx.fillText('88.2%', leftMargin + 30 + perW, y);
+y += 56;
 
 // 2. TECHNICAL SKILLS
 drawSectionHeader('Technical Skills');
 
 function drawSkill(cat: string, items: string) {
-  ctx.font = 'bold 23px sans-serif';
-  ctx.fillStyle = '#111111';
+  ctx.font = 'bold 34px "Segoe UI", Arial, sans-serif';
+  ctx.fillStyle = '#0F172A';
   ctx.fillText(cat, leftMargin, y);
   const w = ctx.measureText(cat).width;
-  ctx.font = '23px sans-serif';
-  ctx.fillStyle = '#374151';
-  ctx.fillText(items, leftMargin + w + 10, y);
-  y += 32;
+  ctx.font = '34px "Segoe UI", Arial, sans-serif';
+  ctx.fillStyle = '#1E293B';
+  ctx.fillText(items, leftMargin + w + 14, y);
+  y += 48;
 }
 
 drawSkill('Languages: ', 'C++20, C, Python, JavaScript (ES6+), TypeScript, SQL, HTML5, CSS3');
@@ -149,25 +148,25 @@ drawSkill('Frameworks & Libraries: ', 'Next.js 16, React 19, Node.js, Express.js
 drawSkill('Developer Tools & Cloud: ', 'Git, GitHub, Docker, AWS (EC2, S3), Supabase (PostgreSQL), MongoDB Atlas, Redis, CMake, Vercel');
 drawSkill('Core Concepts: ', 'Data Structures & Algorithms, Object-Oriented Programming, System Design, REST APIs, WebSockets, CI/CD');
 
-y += 10;
+y += 18;
 
 // 3. PROJECTS
 drawSectionHeader('Projects');
 
 // QuantFlow
-ctx.font = 'bold 26px sans-serif';
-ctx.fillStyle = '#111111';
+ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#0F172A';
 ctx.fillText('QuantFlow', leftMargin, y);
 const qfW = ctx.measureText('QuantFlow').width;
 
-ctx.font = 'italic 23px sans-serif';
-ctx.fillStyle = '#4B5563';
+ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#475569';
 ctx.fillText(' |  C++20, Next.js, LangGraph, Mistral AI, AWS EC2  |  GitHub  |  quantflow.hackcentral.me', leftMargin + qfW, y);
 
 const qfDate = 'Jul 2026 -- Sep 2026';
-ctx.font = '23px sans-serif';
+ctx.font = '34px "Segoe UI", Arial, sans-serif';
 ctx.fillText(qfDate, rightMargin - ctx.measureText(qfDate).width, y);
-y += 30;
+y += 46;
 
 drawBullet([
   { text: 'Engineered a quantitative backtesting engine in ' },
@@ -193,22 +192,22 @@ drawBullet([
   { text: '.' }
 ]);
 
-y += 10;
+y += 18;
 
 // HackCentral
-ctx.font = 'bold 26px sans-serif';
-ctx.fillStyle = '#111111';
+ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#0F172A';
 ctx.fillText('HackCentral', leftMargin, y);
 const hcW = ctx.measureText('HackCentral').width;
 
-ctx.font = 'italic 23px sans-serif';
-ctx.fillStyle = '#4B5563';
+ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#475569';
 ctx.fillText(' |  React, Node.js, Express, MongoDB, Socket.IO, AWS EC2  |  GitHub  |  hackcentral.me', leftMargin + hcW, y);
 
 const hcDate = 'Mar 2026 -- Jun 2026';
-ctx.font = '23px sans-serif';
+ctx.font = '34px "Segoe UI", Arial, sans-serif';
 ctx.fillText(hcDate, rightMargin - ctx.measureText(hcDate).width, y);
-y += 30;
+y += 46;
 
 drawBullet([
   { text: 'Architected an event discovery platform delivering ' },
@@ -230,22 +229,22 @@ drawBullet([
   { text: ', containerizing micro-services with multi-stage Docker builds and deploying automated CI/CD pipelines to an AWS EC2 instance.' }
 ]);
 
-y += 10;
+y += 18;
 
 // Career Connect
-ctx.font = 'bold 26px sans-serif';
-ctx.fillStyle = '#111111';
+ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#0F172A';
 ctx.fillText('Career Connect', leftMargin, y);
 const ccW = ctx.measureText('Career Connect').width;
 
-ctx.font = 'italic 23px sans-serif';
-ctx.fillStyle = '#4B5563';
+ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#475569';
 ctx.fillText(' |  React 19, Stream.io, Clerk, Monaco Editor, Piston API  |  GitHub  |  career-connect-4gbj.onrender.com', leftMargin + ccW, y);
 
 const ccDate = 'Dec 2025';
-ctx.font = '23px sans-serif';
+ctx.font = '34px "Segoe UI", Arial, sans-serif';
 ctx.fillText(ccDate, rightMargin - ctx.measureText(ccDate).width, y);
-y += 30;
+y += 46;
 
 drawBullet([
   { text: 'Built a real-time collaborative coding platform with ' },
@@ -269,7 +268,7 @@ drawBullet([
   { text: '.' }
 ]);
 
-y += 10;
+y += 18;
 
 // 4. ACHIEVEMENTS
 drawSectionHeader('Achievements & Competitive Programming');
@@ -299,7 +298,7 @@ drawBullet([
   { text: '.' }
 ]);
 
-y += 10;
+y += 18;
 
 // 5. CERTIFICATIONS
 drawSectionHeader('Certifications');
@@ -314,8 +313,8 @@ drawBullet([
   { text: ' -- Completed training in AWS architecture, VPC design, IAM security, and resilient systems with a 94.73% grade.' }
 ]);
 
-// Write texture image
+// Write 4K texture image
 const buffer = canvas.toBuffer('image/png');
 const outPath = path.join(process.cwd(), 'public', 'resume-preview.png');
 fs.writeFileSync(outPath, buffer);
-console.log('Crystal clear 3D preview texture generated at:', outPath, 'Bytes:', buffer.length);
+console.log('Ultra-sharp 4K preview texture generated at:', outPath, 'Bytes:', buffer.length);

@@ -33,16 +33,18 @@ function Detailed3DResumeDocument({
   
   // Load high-resolution texture of the actual resume
   const texture = useLoader(THREE.TextureLoader, "/resume-preview.png");
-  texture.minFilter = THREE.LinearFilter;
+  texture.minFilter = THREE.LinearMipmapLinearFilter;
+  texture.magFilter = THREE.LinearFilter;
   texture.generateMipmaps = true;
+  texture.anisotropy = 16;
 
   useFrame((state, delta) => {
     if (meshRef.current && interactive) {
       // Very gentle idle sway and react smoothly to cursor pointer
-      const targetRotY = state.pointer.x * 0.35;
-      const targetRotX = -state.pointer.y * 0.25;
-      meshRef.current.rotation.y = THREE.MathUtils.damp(meshRef.current.rotation.y, targetRotY, 6, delta);
-      meshRef.current.rotation.x = THREE.MathUtils.damp(meshRef.current.rotation.x, targetRotX, 6, delta);
+      const targetRotY = state.pointer.x * 0.15;
+      const targetRotX = -state.pointer.y * 0.12;
+      meshRef.current.rotation.y = THREE.MathUtils.damp(meshRef.current.rotation.y, targetRotY, 8, delta);
+      meshRef.current.rotation.x = THREE.MathUtils.damp(meshRef.current.rotation.x, targetRotX, 8, delta);
     }
   });
 
@@ -50,14 +52,14 @@ function Detailed3DResumeDocument({
     <group ref={meshRef}>
       {/* Front Textured Resume Sheet */}
       <mesh position={[0, 0, 0.015]}>
-        {/* Aspect ratio 1700 x 2200 -> ~ 1.7 x 2.2 */}
-        <planeGeometry args={[2.2, 2.85]} />
+        {/* Aspect ratio 2550 x 3300 = 8.5 x 11 -> width 2.4, height 3.106 */}
+        <planeGeometry args={[2.4, 3.106]} />
         <meshBasicMaterial map={texture} toneMapped={false} />
       </mesh>
 
       {/* Back Thick Paper Board with Subtle Bevel */}
       <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[2.22, 2.87, 0.03]} />
+        <boxGeometry args={[2.42, 3.126, 0.03]} />
         <meshStandardMaterial
           color="#F9FAFB"
           roughness={0.3}
@@ -84,12 +86,18 @@ export function ResumeModal({ isOpen, onClose, pdfUrl }: ResumeModalProps) {
     };
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      document.body.setAttribute("data-modal-open", "true");
+      window.dispatchEvent(new CustomEvent("resume-modal-toggle"));
       window.addEventListener("keydown", handleKeyDown);
     } else {
       document.body.style.overflow = "unset";
+      document.body.removeAttribute("data-modal-open");
+      window.dispatchEvent(new CustomEvent("resume-modal-toggle"));
     }
     return () => {
       document.body.style.overflow = "unset";
+      document.body.removeAttribute("data-modal-open");
+      window.dispatchEvent(new CustomEvent("resume-modal-toggle"));
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
@@ -194,21 +202,20 @@ export function ResumeModal({ isOpen, onClose, pdfUrl }: ResumeModalProps) {
             <div className="w-full h-full relative cursor-grab active:cursor-grabbing">
               <Canvas
                 key={controlsKey}
-                camera={{ position: [0, 0, 3.8], fov: 48 }}
+                camera={{ position: [0, 0, 3.4], fov: 42 }}
+                gl={{ antialias: true, powerPreference: "high-performance" }}
                 className="w-full h-full"
               >
-                <ambientLight intensity={1.5} />
-                <directionalLight position={[4, 5, 5]} intensity={1.6} />
-                <pointLight position={[-3, -3, 3]} intensity={0.4} color="#10B981" />
-                <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.3}>
-                  <Detailed3DResumeDocument interactive={true} />
-                </Float>
+                <ambientLight intensity={1.8} />
+                <directionalLight position={[3, 5, 4]} intensity={1.5} />
+                <pointLight position={[-2, -2, 2]} intensity={0.3} color="#10B981" />
+                <Detailed3DResumeDocument interactive={true} />
                 <OrbitControls
                   enablePan={true}
                   enableZoom={true}
-                  minDistance={2.0}
-                  maxDistance={6.0}
-                  maxPolarAngle={Math.PI / 1.5}
+                  minDistance={1.2}
+                  maxDistance={5.0}
+                  maxPolarAngle={Math.PI / 1.6}
                   minPolarAngle={Math.PI / 4}
                 />
               </Canvas>
