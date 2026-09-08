@@ -35,30 +35,16 @@ function ThreeDResumeSheet({ isHovered }: { isHovered: boolean }) {
         <meshBasicMaterial map={texture} toneMapped={false} />
       </mesh>
 
-      {/* Back Thick Paper Board */}
+      {/* Back Thick Paper Board with neutral matte color */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[1.72, 2.22, 0.025]} />
-        <meshStandardMaterial
-          color="#FFFFFF"
-          roughness={0.25}
-          metalness={0.05}
-        />
+        <meshBasicMaterial color="#FFFFFF" />
       </mesh>
 
       {/* Top-Right Dog-Ear / Fold */}
       <mesh position={[0.73, 0.98, 0.02]} rotation={[0, 0, Math.PI / 4]}>
         <planeGeometry args={[0.22, 0.22]} />
-        <meshStandardMaterial color="#E5E7EB" roughness={0.5} />
-      </mesh>
-
-      {/* Subtle glowing halo behind the paper */}
-      <mesh position={[0, 0, -0.08]}>
-        <planeGeometry args={[2.0, 2.5]} />
-        <meshBasicMaterial
-          color={isHovered ? "#10B981" : "#D1D5DB"}
-          transparent
-          opacity={isHovered ? 0.25 : 0.08}
-        />
+        <meshBasicMaterial color="#E5E7EB" />
       </mesh>
     </group>
   );
@@ -143,10 +129,8 @@ export function Interactive3DResumeCard({ variant = "card" }: Interactive3DResum
               camera={{ position: [0, 0, 3.4], fov: 45 }}
               className="w-full h-full"
             >
-              <ambientLight intensity={1.5} />
-              <directionalLight position={[3, 4, 3]} intensity={1.6} />
-              <pointLight position={[-2, -2, 2]} intensity={0.5} color="#10B981" />
-              <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.6}>
+              <ambientLight intensity={1.0} />
+              <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.4}>
                 <ThreeDResumeSheet isHovered={isHovered} />
               </Float>
             </Canvas>
