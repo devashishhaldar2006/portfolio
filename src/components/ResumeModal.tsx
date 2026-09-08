@@ -1,22 +1,104 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { 
   Download, 
   ExternalLink, 
   X, 
   FileText, 
   ShieldCheck, 
-  Printer
+  RotateCcw,
+  Layers,
+  FileCheck2,
+  ZoomIn,
+  ZoomOut
 } from "lucide-react";
+import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
+
+// 3D Sheet Component with Anisotropic Filtering to eliminate shimmer & glittering
+function Crisp3DResumeSheet({ scale }: { scale: number }) {
+  const meshRef = useRef<THREE.Group>(null);
+  const { gl } = useThree();
+
+  const texture = useLoader(THREE.TextureLoader, "/resume-preview.png");
+  
+  useEffect(() => {
+    if (texture) {
+      texture.generateMipmaps = true;
+      texture.minFilter = THREE.LinearMipmapLinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.anisotropy = gl.capabilities.getMaxAnisotropy();
+      texture.needsUpdate = true;
+    }
+  }, [texture, gl]);
+
+  // Subtle natural floating idle motion
+  useFrame((state) => {
+    if (meshRef.current) {
+      const t = state.clock.getElapsedTime();
+      meshRef.current.position.y = Math.sin(t * 1.0) * 0.03;
+    }
+  });
+
+  // Letter paper ratio: 2550 x 3300 = 1.0 : 1.2941
+  const width = 2.1 * scale;
+  const height = 2.717 * scale;
+
+  return (
+    <group ref={meshRef}>
+      {/* Front Face: High-res texture, 100% matte (no specular glare or glitter) */}
+      <mesh position={[0, 0, 0.012]}>
+        <planeGeometry args={[width, height]} />
+        <meshBasicMaterial 
+          map={texture} 
+          toneMapped={false} 
+          side={THREE.FrontSide} 
+        />
+      </mesh>
+
+      {/* Solid Paper Core: Clean matte white board */}
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[width + 0.02, height + 0.02, 0.02]} />
+        <meshBasicMaterial color="#FFFFFF" />
+      </mesh>
+
+      {/* Back Paper Face: Matte clean cardstock */}
+      <mesh position={[0, 0, -0.012]} rotation={[0, Math.PI, 0]}>
+        <planeGeometry args={[width, height]} />
+        <meshBasicMaterial color="#F9F9F8" />
+      </mesh>
+
+      {/* Soft Drop Shadow beneath the sheet */}
+      <mesh position={[0, -0.05, -0.06]}>
+        <planeGeometry args={[width + 0.15, height + 0.15]} />
+        <meshBasicMaterial color="#000000" transparent opacity={0.25} />
+      </mesh>
+    </group>
+  );
+}
 
 interface ResumeModalProps {
   isOpen: boolean;
   onClose: () => void;
   pdfUrl: string;
+  initialMode?: "3d" | "flat";
 }
 
-export function ResumeModal({ isOpen, onClose, pdfUrl }: ResumeModalProps) {
+export function ResumeModal({ isOpen, onClose, pdfUrl, initialMode = "3d" }: ResumeModalProps) {
+  const [viewMode, setViewMode] = useState<"3d" | "flat">(initialMode);
+  const [zoomLevel, setZoomLevel] = useState(1.0);
+  const [cameraKey, setCameraKey] = useState(0);
+
+  // Sync mode when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setViewMode(initialMode);
+      setZoomLevel(1.0);
+    }
+  }, [isOpen, initialMode]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -41,14 +123,19 @@ export function ResumeModal({ isOpen, onClose, pdfUrl }: ResumeModalProps) {
 
   if (!isOpen) return null;
 
+  const handleResetCamera = () => {
+    setCameraKey((k) => k + 1);
+    setZoomLevel(1.0);
+  };
+
   return (
-    <div className="fixed inset-0 z-[100000] flex items-center justify-center p-2 sm:p-5 bg-black/75 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[100000] flex items-center justify-center p-2 sm:p-5 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div 
         className="relative w-full max-w-6xl h-[94vh] bg-[#FFFFFF] rounded-2xl sm:rounded-3xl border border-[#E4E4E0] shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
-        <div className="flex flex-wrap items-center justify-between px-4 sm:px-6 py-3.5 border-b border-[#E4E4E0] bg-[#F7F7F4]/95 backdrop-blur-sm gap-3">
+        <div className="flex flex-wrap items-center justify-between px-4 sm:px-6 py-3 border-b border-[#E4E4E0] bg-[#F7F7F4]/95 backdrop-blur-sm gap-3">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-800 shadow-xs">
               <FileText className="w-5 h-5" />
@@ -70,6 +157,32 @@ export function ResumeModal({ isOpen, onClose, pdfUrl }: ResumeModalProps) {
           </div>
 
           <div className="flex items-center gap-2">
+            {/* 3D vs Vector Toggle */}
+            <div className="flex items-center p-1 bg-white border border-[#E4E4E0] rounded-xl shadow-2xs font-mono text-xs font-bold">
+              <button
+                onClick={() => setViewMode("3d")}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all ${
+                  viewMode === "3d"
+                    ? "bg-[#111111] text-white shadow-xs"
+                    : "text-[#5F6368] hover:text-[#111111]"
+                }`}
+              >
+                <Layers className="w-3.5 h-3.5 text-emerald-400" />
+                <span>3D PREVIEW</span>
+              </button>
+              <button
+                onClick={() => setViewMode("flat")}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all ${
+                  viewMode === "flat"
+                    ? "bg-[#111111] text-white shadow-xs"
+                    : "text-[#5F6368] hover:text-[#111111]"
+                }`}
+              >
+                <FileCheck2 className="w-3.5 h-3.5" />
+                <span>PDF DOCUMENT</span>
+              </button>
+            </div>
+
             {/* Direct Download Button */}
             <a
               href={pdfUrl}
@@ -103,42 +216,109 @@ export function ResumeModal({ isOpen, onClose, pdfUrl }: ResumeModalProps) {
           </div>
         </div>
 
-        {/* Content Body: Pure Vector PDF Reader */}
-        <div className="flex-1 w-full bg-[#323639] relative overflow-hidden flex items-center justify-center">
-          <object
-            data={`${pdfUrl}#toolbar=1&navpanes=0&view=FitH`}
-            type="application/pdf"
-            className="w-full h-full border-none"
-          >
-            <div className="flex flex-col items-center justify-center h-full text-white p-6 text-center space-y-4">
-              <FileText className="w-16 h-16 text-emerald-400 opacity-80" />
-              <div className="max-w-md">
-                <h4 className="text-lg font-bold font-mono">Devashish Haldar Resume</h4>
-                <p className="text-xs text-[#E4E4E0] mt-1 font-mono">
-                  Direct inline viewer ready. Download or view in new tab below.
-                </p>
+        {/* Content Body: 3D Canvas OR Vector PDF */}
+        <div className="flex-1 w-full bg-[#181B1E] relative overflow-hidden flex items-center justify-center select-none">
+          {viewMode === "3d" ? (
+            <div className="w-full h-full relative cursor-grab active:cursor-grabbing">
+              <Canvas
+                key={cameraKey}
+                camera={{ position: [0, 0, 3.2], fov: 45 }}
+                gl={{ 
+                  antialias: true, 
+                  powerPreference: "high-performance",
+                  toneMapping: THREE.NoToneMapping
+                }}
+                className="w-full h-full"
+              >
+                {/* Clean, soft ambient light without glittering highlights */}
+                <ambientLight intensity={1.0} />
+
+                <React.Suspense fallback={null}>
+                  <Crisp3DResumeSheet scale={zoomLevel} />
+                </React.Suspense>
+
+                <OrbitControls
+                  enablePan={true}
+                  enableZoom={true}
+                  minDistance={1.4}
+                  maxDistance={4.8}
+                  maxPolarAngle={Math.PI / 1.7}
+                  minPolarAngle={Math.PI / 4}
+                />
+              </Canvas>
+
+              {/* 3D UI Overlays */}
+              <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 pointer-events-none">
+                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-white font-mono text-xs flex items-center gap-1.5 shadow-md">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>INTERACTIVE 3D RESUME</span>
+                </span>
+                <span className="hidden sm:inline-block px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white/70 font-mono text-[11px]">
+                  DRAG TO ROTATE · SCROLL TO ZOOM
+                </span>
               </div>
-              <div className="flex items-center gap-3">
-                <a
-                  href={pdfUrl}
-                  download="Devashish_Haldar_Resume.pdf"
-                  className="px-4 py-2 rounded-xl bg-emerald-600 text-white font-mono text-xs font-bold hover:bg-emerald-500 shadow-md inline-flex items-center gap-2"
+
+              {/* 3D Floating Control Buttons */}
+              <div className="absolute bottom-3 right-3 flex items-center gap-1.5">
+                <button
+                  onClick={() => setZoomLevel((z) => Math.min(z + 0.15, 1.45))}
+                  className="p-2 rounded-xl bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/15 text-white text-xs transition-all shadow-md active:scale-95"
+                  title="Zoom In"
                 >
-                  <Download className="w-4 h-4" />
-                  DOWNLOAD PDF
-                </a>
-                <a
-                  href={pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-semibold inline-flex items-center gap-2"
+                  <ZoomIn className="w-4 h-4 text-emerald-400" />
+                </button>
+                <button
+                  onClick={() => setZoomLevel((z) => Math.max(z - 0.15, 0.7))}
+                  className="p-2 rounded-xl bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/15 text-white text-xs transition-all shadow-md active:scale-95"
+                  title="Zoom Out"
                 >
-                  <ExternalLink className="w-4 h-4" />
-                  OPEN IN NEW TAB
-                </a>
+                  <ZoomOut className="w-4 h-4 text-emerald-400" />
+                </button>
+                <button
+                  onClick={handleResetCamera}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/15 text-white text-xs font-mono font-medium transition-all shadow-md active:scale-95"
+                >
+                  <RotateCcw className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>RESET CAMERA</span>
+                </button>
               </div>
             </div>
-          </object>
+          ) : (
+            <object
+              data={`${pdfUrl}#toolbar=1&navpanes=0&view=FitH`}
+              type="application/pdf"
+              className="w-full h-full border-none bg-[#323639]"
+            >
+              <div className="flex flex-col items-center justify-center h-full text-white p-6 text-center space-y-4">
+                <FileText className="w-16 h-16 text-emerald-400 opacity-80" />
+                <div className="max-w-md">
+                  <h4 className="text-lg font-bold font-mono">Devashish Haldar Resume</h4>
+                  <p className="text-xs text-[#E4E4E0] mt-1 font-mono">
+                    Direct inline viewer ready. Download or view in new tab below.
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={pdfUrl}
+                    download="Devashish_Haldar_Resume.pdf"
+                    className="px-4 py-2 rounded-xl bg-emerald-600 text-white font-mono text-xs font-bold hover:bg-emerald-500 shadow-md inline-flex items-center gap-2"
+                  >
+                    <Download className="w-4 h-4" />
+                    DOWNLOAD PDF
+                  </a>
+                  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-semibold inline-flex items-center gap-2"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    OPEN IN NEW TAB
+                  </a>
+                </div>
+              </div>
+            </object>
+          )}
         </div>
 
         {/* Modal Bottom Status */}

@@ -57,6 +57,7 @@ interface Interactive3DResumeCardProps {
 export function Interactive3DResumeCard({ variant = "card" }: Interactive3DResumeCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState<"3d" | "flat">("3d");
   const [downloadTriggered, setDownloadTriggered] = useState(false);
 
   const pdfPath = "/Devashish_Haldar_Resume.pdf";
@@ -75,7 +76,8 @@ export function Interactive3DResumeCard({ variant = "card" }: Interactive3DResum
     link.click();
     document.body.removeChild(link);
 
-    // 2. Open inline rich interactive 3D preview modal
+    // 2. Open inline preview modal in vector PDF mode
+    setModalMode("flat");
     setModalOpen(true);
     setDownloadTriggered(true);
     setTimeout(() => setDownloadTriggered(false), 3000);
@@ -84,6 +86,7 @@ export function Interactive3DResumeCard({ variant = "card" }: Interactive3DResum
   const handlePreviewOnly = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    setModalMode("3d");
     setModalOpen(true);
   };
 
@@ -104,6 +107,7 @@ export function Interactive3DResumeCard({ variant = "card" }: Interactive3DResum
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
           pdfUrl={pdfPath}
+          initialMode={modalMode}
         />
       </>
     );
@@ -216,6 +220,7 @@ export function Interactive3DResumeCard({ variant = "card" }: Interactive3DResum
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         pdfUrl={pdfPath}
+        initialMode={modalMode}
       />
     </>
   );
