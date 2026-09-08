@@ -11,14 +11,18 @@ import {
   Layers,
   FileCheck2,
   ZoomIn,
-  ZoomOut
+  ZoomOut,
+  ArrowUp,
+  ArrowDown,
+  Navigation
 } from "lucide-react";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import type { OrbitControls as OrbitControlsType } from "three-stdlib";
 import * as THREE from "three";
 
 // 3D Sheet Component with Anisotropic Filtering to eliminate shimmer & glittering
-function Crisp3DResumeSheet({ scale }: { scale: number }) {
+function Crisp3DResumeSheet() {
   const meshRef = useRef<THREE.Group>(null);
   const { gl } = useThree();
 
@@ -34,17 +38,9 @@ function Crisp3DResumeSheet({ scale }: { scale: number }) {
     }
   }, [texture, gl]);
 
-  // Subtle natural floating idle motion
-  useFrame((state) => {
-    if (meshRef.current) {
-      const t = state.clock.getElapsedTime();
-      meshRef.current.position.y = Math.sin(t * 1.0) * 0.03;
-    }
-  });
-
   // Letter paper ratio: 2550 x 3300 = 1.0 : 1.2941
-  const width = 2.1 * scale;
-  const height = 2.717 * scale;
+  const width = 2.1;
+  const height = 2.717;
 
   return (
     <group ref={meshRef}>
@@ -73,7 +69,7 @@ function Crisp3DResumeSheet({ scale }: { scale: number }) {
       {/* Soft Drop Shadow beneath the sheet */}
       <mesh position={[0, -0.05, -0.06]}>
         <planeGeometry args={[width + 0.15, height + 0.15]} />
-        <meshBasicMaterial color="#000000" transparent opacity={0.25} />
+        <meshBasicMaterial color="#000000" transparent opacity={0.3} />
       </mesh>
     </group>
   );
@@ -88,14 +84,13 @@ interface ResumeModalProps {
 
 export function ResumeModal({ isOpen, onClose, pdfUrl, initialMode = "3d" }: ResumeModalProps) {
   const [viewMode, setViewMode] = useState<"3d" | "flat">(initialMode);
-  const [zoomLevel, setZoomLevel] = useState(1.0);
   const [cameraKey, setCameraKey] = useState(0);
+  const controlsRef = useRef<OrbitControlsType>(null);
 
   // Sync mode when modal opens
   useEffect(() => {
     if (isOpen) {
       setViewMode(initialMode);
-      setZoomLevel(1.0);
     }
   }, [isOpen, initialMode]);
 
@@ -125,7 +120,25 @@ export function ResumeModal({ isOpen, onClose, pdfUrl, initialMode = "3d" }: Res
 
   const handleResetCamera = () => {
     setCameraKey((k) => k + 1);
-    setZoomLevel(1.0);
+  };
+
+  const panTo = (targetY: number) => {
+    if (controlsRef.current) {
+      controlsRef.current.target.set(0, targetY, 0);
+      controlsRef.current.update();
+    }
+  };
+
+  const zoomDelta = (delta: number) => {
+    if (controlsRef.current) {
+      const camera = controlsRef.current.object as THREE.PerspectiveCamera;
+      if (camera) {
+        const dir = new THREE.Vector3();
+        camera.getWorldDirection(dir);
+        camera.position.addScaledVector(dir, delta);
+        controlsRef.current.update();
+      }
+    }
   };
 
   return (
@@ -234,14 +247,19 @@ export function ResumeModal({ isOpen, onClose, pdfUrl, initialMode = "3d" }: Res
                 <ambientLight intensity={1.0} />
 
                 <React.Suspense fallback={null}>
-                  <Crisp3DResumeSheet scale={zoomLevel} />
+                  <Crisp3DResumeSheet />
                 </React.Suspense>
 
+                {/* OrbitControls with full screen-space pan enabled so users can zoom anywhere */}
                 <OrbitControls
+                  ref={controlsRef}
                   enablePan={true}
+                  panSpeed={1.5}
+                  screenSpacePanning={true}
                   enableZoom={true}
-                  minDistance={1.4}
-                  maxDistance={4.8}
+                  zoomSpeed={1.2}
+                  minDistance={0.5}
+                  maxDistance={6.0}
                   maxPolarAngle={Math.PI / 1.7}
                   minPolarAngle={Math.PI / 4}
                 />
@@ -254,21 +272,73 @@ export function ResumeModal({ isOpen, onClose, pdfUrl, initialMode = "3d" }: Res
                   <span>INTERACTIVE 3D RESUME</span>
                 </span>
                 <span className="hidden sm:inline-block px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white/70 font-mono text-[11px]">
-                  DRAG TO ROTATE · SCROLL TO ZOOM
+                  LEFT DRAG: ROTATE · RIGHT/TWO-FINGER DRAG: PAN ANYWHERE · SCROLL: ZOOM
                 </span>
+              </div>
+
+              {/* Quick Section Jump Bar (Top / Projects / Education / Skills / Experience / Bottom) */}
+              <div className="absolute top-3 right-3 hidden md:flex items-center gap-1 p-1 bg-black/60 backdrop-blur-md rounded-xl border border-white/10 text-white text-[10px] font-mono">
+                <span className="px-2 text-white/50 flex items-center gap-1">
+                  <Navigation className="w-3 h-3 text-emerald-400" />
+                  JUMP:
+                </span>
+                <button
+                  onClick={() => panTo(0.9)}
+                  className="px-2 py-1 rounded-lg hover:bg-white/15 transition-colors"
+                  title="Header & Education"
+                >
+                  TOP
+                </button>
+                <button
+                  onClick={() => panTo(0.35)}
+                  className="px-2 py-1 rounded-lg hover:bg-white/15 transition-colors"
+                  title="Technical Skills"
+                >
+                  SKILLS
+                </button>
+                <button
+                  onClick={() => panTo(-0.2)}
+                  className="px-2 py-1 rounded-lg hover:bg-white/15 transition-colors"
+                  title="QuantFlow & Flagship Projects"
+                >
+                  PROJECTS
+                </button>
+                <button
+                  onClick={() => panTo(-0.85)}
+                  className="px-2 py-1 rounded-lg hover:bg-white/15 transition-colors"
+                  title="Achievements & AWS Certifications"
+                >
+                  BOTTOM
+                </button>
               </div>
 
               {/* 3D Floating Control Buttons */}
               <div className="absolute bottom-3 right-3 flex items-center gap-1.5">
                 <button
-                  onClick={() => setZoomLevel((z) => Math.min(z + 0.15, 1.45))}
+                  onClick={() => panTo(0.4)}
+                  className="p-2 rounded-xl bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/15 text-white text-xs transition-all shadow-md active:scale-95 flex items-center gap-1 font-mono text-[11px]"
+                  title="Pan Up"
+                >
+                  <ArrowUp className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="hidden sm:inline">PAN UP</span>
+                </button>
+                <button
+                  onClick={() => panTo(-0.4)}
+                  className="p-2 rounded-xl bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/15 text-white text-xs transition-all shadow-md active:scale-95 flex items-center gap-1 font-mono text-[11px]"
+                  title="Pan Down"
+                >
+                  <ArrowDown className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="hidden sm:inline">PAN DOWN</span>
+                </button>
+                <button
+                  onClick={() => zoomDelta(0.4)}
                   className="p-2 rounded-xl bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/15 text-white text-xs transition-all shadow-md active:scale-95"
-                  title="Zoom In"
+                  title="Zoom In Close"
                 >
                   <ZoomIn className="w-4 h-4 text-emerald-400" />
                 </button>
                 <button
-                  onClick={() => setZoomLevel((z) => Math.max(z - 0.15, 0.7))}
+                  onClick={() => zoomDelta(-0.4)}
                   className="p-2 rounded-xl bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/15 text-white text-xs transition-all shadow-md active:scale-95"
                   title="Zoom Out"
                 >
@@ -279,7 +349,7 @@ export function ResumeModal({ isOpen, onClose, pdfUrl, initialMode = "3d" }: Res
                   className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/15 text-white text-xs font-mono font-medium transition-all shadow-md active:scale-95"
                 >
                   <RotateCcw className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>RESET CAMERA</span>
+                  <span>RESET</span>
                 </button>
               </div>
             </div>
