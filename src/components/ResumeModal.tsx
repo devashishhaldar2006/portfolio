@@ -77,7 +77,7 @@ function Detailed3DResumeDocument({
 }
 
 export function ResumeModal({ isOpen, onClose, pdfUrl }: ResumeModalProps) {
-  const [viewMode, setViewMode] = useState<"3d" | "flat">("3d");
+  const [viewMode, setViewMode] = useState<"3d" | "flat">("flat");
   const [controlsKey, setControlsKey] = useState(0);
 
   useEffect(() => {
@@ -140,17 +140,6 @@ export function ResumeModal({ isOpen, onClose, pdfUrl }: ResumeModalProps) {
             {/* 3D vs Standard View Toggle */}
             <div className="flex items-center p-1 bg-white border border-[#E4E4E0] rounded-xl shadow-2xs font-mono text-xs font-bold">
               <button
-                onClick={() => setViewMode("3d")}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all ${
-                  viewMode === "3d"
-                    ? "bg-[#111111] text-white shadow-xs"
-                    : "text-[#5F6368] hover:text-[#111111]"
-                }`}
-              >
-                <Layers className="w-3.5 h-3.5" />
-                <span>3D VIEW</span>
-              </button>
-              <button
                 onClick={() => setViewMode("flat")}
                 className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all ${
                   viewMode === "flat"
@@ -159,7 +148,18 @@ export function ResumeModal({ isOpen, onClose, pdfUrl }: ResumeModalProps) {
                 }`}
               >
                 <FileCheck2 className="w-3.5 h-3.5" />
-                <span>STANDARD PDF</span>
+                <span>ORIGINAL PDF</span>
+              </button>
+              <button
+                onClick={() => setViewMode("3d")}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all ${
+                  viewMode === "3d"
+                    ? "bg-[#111111] text-white shadow-xs"
+                    : "text-[#5F6368] hover:text-[#111111]"
+                }`}
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>3D TILT VIEW</span>
               </button>
             </div>
 
