@@ -79,6 +79,17 @@ export function ContactAndFooter() {
                   <Phone className="w-4 h-4" />
                   <span>+91 9336009951</span>
                 </a>
+
+                <a
+                  href="/Devashish_Haldar_Resume.pdf"
+                  download="Devashish_Haldar_Resume.pdf"
+                  data-cursor="RESUME"
+                  className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-sm font-mono font-semibold hover:bg-emerald-100 transition-all shadow-2xs"
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                  <span>RESUME PDF</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-emerald-700" />
+                </a>
               </div>
 
               {/* Location Indicator */}
@@ -132,6 +143,13 @@ export function ContactAndFooter() {
               className="hover:text-[#111111] transition-colors"
             >
               CodeChef
+            </a>
+            <a
+              href="/Devashish_Haldar_Resume.pdf"
+              download="Devashish_Haldar_Resume.pdf"
+              className="text-emerald-700 font-bold hover:text-emerald-900 transition-colors"
+            >
+              Resume PDF
             </a>
             <a
               href="https://www.linkedin.com/in/devashish-haldar-dev/"

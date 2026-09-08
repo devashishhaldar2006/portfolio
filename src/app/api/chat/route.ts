@@ -184,9 +184,10 @@ Competitive & Honors:
     }
 
     // Contact & Hiring
-    if (q.includes("contact") || q.includes("email") || q.includes("phone") || q.includes("reach") || q.includes("interview") || q.includes("location")) {
+    if (q.includes("contact") || q.includes("email") || q.includes("phone") || q.includes("reach") || q.includes("interview") || q.includes("location") || q.includes("resume") || q.includes("cv")) {
       return NextResponse.json({
-        reply: `You can reach Devashish directly:
+        reply: `You can reach Devashish directly or inspect his official resume:
+- **Resume (PDF):** [Download / View Devashish_Haldar_Resume.pdf](/Devashish_Haldar_Resume.pdf)
 - **Email:** workfordevashishhaldar@gmail.com
 - **Phone:** +91 9336009951
 - **LinkedIn:** [linkedin.com/in/devashish-haldar-dev](https://www.linkedin.com/in/devashish-haldar-dev/)

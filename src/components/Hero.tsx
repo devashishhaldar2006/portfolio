@@ -7,6 +7,7 @@ import { MetaMesh3D } from "./MetaMesh3D";
 import { ScrollReveal } from "./ScrollReveal";
 import { AnimatedTitle, AnimatedWords } from "./AnimatedText";
 import { FloatingDataBadges } from "./FloatingDataBadges";
+import { Interactive3DResumeCard } from "./Interactive3DResumeCard";
 
 export function Hero() {
   return (
@@ -93,6 +94,8 @@ export function Hero() {
                 </div>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </a>
+
+              <Interactive3DResumeCard variant="compact" />
             </div>
           </ScrollReveal>
         </div>

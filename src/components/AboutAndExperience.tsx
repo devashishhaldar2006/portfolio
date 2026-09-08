@@ -2,6 +2,7 @@
 
 import { Award, BookOpen, CheckCircle, Code2, GraduationCap, Trophy } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
+import { Interactive3DResumeCard } from "./Interactive3DResumeCard";
 
 interface TimelineItem {
   year: string;
@@ -300,6 +301,13 @@ export function AboutAndExperience() {
                 </a>
               </ScrollReveal>
             ))}
+          </div>
+
+          {/* 3D INTERACTIVE RESUME DOSSIER */}
+          <div className="mt-14">
+            <ScrollReveal delay={0.2}>
+              <Interactive3DResumeCard variant="card" />
+            </ScrollReveal>
           </div>
         </div>
       </div>

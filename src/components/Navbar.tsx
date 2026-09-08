@@ -81,8 +81,17 @@ export function Navbar() {
           })}
         </div>
 
-        {/* Action Button */}
+        {/* Action Buttons */}
         <div className="flex items-center gap-2">
+          <a
+            href="/Devashish_Haldar_Resume.pdf"
+            download="Devashish_Haldar_Resume.pdf"
+            data-cursor="RESUME"
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E4E4E0] text-[#111111] hover:bg-[#F2F2EF] text-[11px] md:text-xs font-mono font-bold transition-all shadow-2xs"
+          >
+            <span>RESUME</span>
+          </a>
+
           <a
             href="#contact"
             data-cursor="CONTACT"
