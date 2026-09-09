@@ -32,7 +32,7 @@ ctx.fillText('Lucknow, Uttar Pradesh, India 226012', width / 2, y);
 y += 50;
 ctx.font = 'bold 34px "Segoe UI", Arial, sans-serif';
 ctx.fillStyle = '#1D4ED8';
-const contactStr = '+91 9336009951   |   workfordevashishhaldar@gmail.com   |   github.com/devashishhaldar2006   |   linkedin.com/in/devashish-haldar-dev';
+const contactStr = '+91 9336009951   |   workfordevashishhaldar@gmail.com   |   Portfolio   |   GitHub   |   LinkedIn';
 ctx.fillText(contactStr, width / 2, y);
 
 y += 60;

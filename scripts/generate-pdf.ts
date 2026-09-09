@@ -58,10 +58,11 @@ async function generateResume() {
   const contacts = [
     { text: "+91 9336009951", label: "Tel" },
     { text: "workfordevashishhaldar@gmail.com", label: "Email" },
-    { text: "github.com/devashishhaldar2006", label: "GitHub" },
-    { text: "linkedin.com/in/devashish-haldar-dev", label: "LinkedIn" }
+    { text: "Portfolio", label: "Portfolio" },
+    { text: "GitHub", label: "GitHub" },
+    { text: "LinkedIn", label: "LinkedIn" }
   ];
-  const contactText = "+91 9336009951   |   workfordevashishhaldar@gmail.com   |   github.com/devashishhaldar2006   |   linkedin.com/in/devashish-haldar-dev";
+  const contactText = "+91 9336009951   |   workfordevashishhaldar@gmail.com   |   Portfolio   |   GitHub   |   LinkedIn";
   const contactSize = 8.5;
   const contactWidth = fontRegular.widthOfTextAtSize(contactText, contactSize);
   page.drawText(contactText, {
