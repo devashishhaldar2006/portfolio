@@ -44,7 +44,7 @@ const timelineData: TimelineItem[] = [
     metrics: "Sub-100ms Latency · 10+ Languages · -60% Overhead",
     description:
       "Built a collaborative coding platform with WebRTC video conferencing and live chat via Stream.io (<100ms latency). Integrated Monaco code editor with Piston API execution with 5s execution timeouts to sandbox compilation across 10+ languages. Automated interview tracking with Clerk and Inngest background jobs, reducing coordination overhead by 60%.",
-    link: { label: "Live Platform", url: "https://career-connect-4gbj.onrender.com" },
+    link: { label: "Live Platform", url: "https://career-connect-delta-navy.vercel.app/" },
   },
   {
     year: "2025",

@@ -60,7 +60,7 @@ const projects: ProjectItem[] = [
     ],
     tags: ["React 19", "Stream.io", "Clerk", "Monaco Editor", "Piston API", "Inngest", "TypeScript"],
     githubUrl: "https://github.com/devashishhaldar2006/career-connect",
-    liveUrl: "https://career-connect-4gbj.onrender.com",
+    liveUrl: "https://career-connect-delta-navy.vercel.app/",
   },
 ];
 

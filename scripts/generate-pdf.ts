@@ -367,7 +367,7 @@ async function generateResume() {
     color: black,
   });
   let p3CurX = leftMargin + fontBold.widthOfTextAtSize("Career Connect", 9.5) + 6;
-  const p3Tech = "|  React 19, Stream.io, Clerk, Monaco Editor, Piston API  |  GitHub  |  career-connect-4gbj.onrender.com";
+  const p3Tech = "|  React 19, Stream.io, Clerk, Monaco Editor, Piston API  |  GitHub  |  career-connect-delta-navy.vercel.app";
   page.drawText(p3Tech, {
     x: p3CurX,
     y: y,

@@ -239,7 +239,7 @@ const ccW = ctx.measureText('Career Connect').width;
 
 ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
 ctx.fillStyle = '#475569';
-ctx.fillText(' |  React 19, Stream.io, Clerk, Monaco Editor, Piston API  |  GitHub  |  career-connect-4gbj.onrender.com', leftMargin + ccW, y);
+ctx.fillText(' |  React 19, Stream.io, Clerk, Monaco Editor, Piston API  |  GitHub  |  career-connect-delta-navy.vercel.app', leftMargin + ccW, y);
 
 const ccDate = 'Dec 2025';
 ctx.font = '34px "Segoe UI", Arial, sans-serif';
