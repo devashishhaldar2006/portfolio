@@ -14,8 +14,18 @@ interface TimelineItem {
   link?: { label: string; url: string };
 }
 
-// REAL RESUME ONLY: PSIT B.Tech in CSE (AI & ML), Deviathon Winner, LeetCode, CodeChef, QuantFlow, HackCentral, Career Connect
+// REAL RESUME ONLY: PSIT B.Tech in CSE (AI & ML), Deviathon Winner, LeetCode, CodeChef, QuantFlow, Joblio, HackCentral
 const timelineData: TimelineItem[] = [
+  {
+    year: "Oct 2026 — Present",
+    category: "PROJECT",
+    title: "Joblio — AI Career Platform & Multi-Agent Copilot",
+    organization: "React Native, LangGraph, Groq, MongoDB, Redis, Google Play Store",
+    metrics: "Published on Play Store · 570+ Tech NLP · -60% Token Usage",
+    description:
+      "Published on Google Play Store; built a full-stack AI career platform in React Native with a FastAPI microservice running LangGraph multi-agent pipelines for resume matching, GitHub hygiene auditing, and automated CI/CD fix generation. Designed two-pass NLP skill extractor and 26-week ML demand forecasting with 30-day Redis caching.",
+    link: { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.devashishcodes.mobile" },
+  },
   {
     year: "Jul 2026 — Sep 2026",
     category: "PROJECT",
@@ -33,18 +43,8 @@ const timelineData: TimelineItem[] = [
     organization: "React, Node.js, Express, MongoDB, Socket.IO, AWS EC2",
     metrics: "Sub-200ms API · 95+ Google Lighthouse",
     description:
-      "Architected an event discovery platform delivering sub-200ms API response times. Optimized database performance using compound indexing on {userId, eventId}. Implemented real-time bidirectional messaging via Socket.IO and integrated Gemini API with structured JSON output parsing to automate submission evaluation. Containerized with Docker and deployed to AWS EC2.",
+      "Architected an event discovery platform delivering sub-200ms API response times. Optimized database performance using compound indexing on {userId, eventId}. Implemented real-time bidirectional messaging via Socket.IO and integrated Gemini API with Zod-enforced structured JSON output parsing to automate submission evaluation. Containerized with Docker and deployed to AWS EC2.",
     link: { label: "HackCentral Live", url: "https://hackcentral.me" },
-  },
-  {
-    year: "Dec 2025",
-    category: "PROJECT",
-    title: "Career Connect — Real-Time Collaborative Interview Platform",
-    organization: "React 19, Stream.io, Clerk, Monaco Editor, Piston API",
-    metrics: "Sub-100ms Latency · 10+ Languages · -60% Overhead",
-    description:
-      "Built a collaborative coding platform with WebRTC video conferencing and live chat via Stream.io (<100ms latency). Integrated Monaco code editor with Piston API execution with 5s execution timeouts to sandbox compilation across 10+ languages. Automated interview tracking with Clerk and Inngest background jobs, reducing coordination overhead by 60%.",
-    link: { label: "Live Platform", url: "https://career-connect-delta-navy.vercel.app/" },
   },
   {
     year: "2025",
@@ -64,9 +64,9 @@ const timelineData: TimelineItem[] = [
     category: "EDUCATION",
     title: "B.Tech. in Computer Science and Engineering (Artificial Intelligence and Machine Learning)",
     organization: "Pranveer Singh Institute of Technology, Kanpur, Uttar Pradesh",
-    metrics: "Cumulative GPA: 8.1 / 10.0",
+    metrics: "Cumulative GPA: 7.92 / 10.0",
     description:
-      "Specialized in Artificial Intelligence, Machine Learning, Data Structures & Algorithms, Object-Oriented Programming, System Design, and Low-Latency Architecture.",
+      "Specialized in Artificial Intelligence, Machine Learning, Data Structures & Algorithms, Low Level Design, Database Management Systems, and Operating Systems.",
   },
 ];
 
@@ -88,7 +88,7 @@ const certifications = [
 ];
 
 const stats = [
-  { label: "LeetCode", value: "400+ Solved", sub: "1562 Contest Rating" },
+  { label: "LeetCode", value: "450+ Solved", sub: "1562 Contest Rating" },
   { label: "CodeChef", value: "3-Star Rating", sub: "Peak 1602 · Global Rank 392" },
   { label: "Quant Engine", value: "1.48M+ ticks/sec", sub: "C++20 Zero Heap Allocation" },
   { label: "National Hackathon", value: "1st Place Winner", sub: "Deviathon Category Winner" },
@@ -128,7 +128,7 @@ export function AboutAndExperience() {
               <div className="space-y-4 text-base md:text-lg text-[#5F6368] font-sans leading-relaxed">
                 <p>
                   I am a computer science student and software builder based in Lucknow, India,
-                  pursuing my B.Tech in CSE (Artificial Intelligence & Machine Learning) at PSIT (8.1 CGPA).
+                  pursuing my B.Tech in CSE (Artificial Intelligence & Machine Learning) at PSIT (7.92 CGPA).
                   My work centers on the mechanics of high-performance software: understanding where
                   nanoseconds are spent in memory hierarchies, orchestrating autonomous AI agents
                   reliably without hallucinations, and wrapping complex quantitative algorithms inside frictionless products.

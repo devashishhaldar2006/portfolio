@@ -174,7 +174,7 @@ export function Interactive3DResumeCard({ variant = "card" }: Interactive3DResum
               </h3>
 
               <p className="text-xs sm:text-sm text-[#5F6368] font-sans mt-2 leading-relaxed">
-                Full-Stack Systems & High-Frequency Engineer (B.Tech CSE AI/ML, PSIT 8.1 CGPA). Features QuantFlow C++20 (1.48M+ ticks/s), HackCentral, Career Connect, LeetCode 400+, CodeChef 3★ (1602 Peak), and AWS Solutions Architect cert.
+                Full-Stack Systems & High-Frequency Engineer (B.Tech CSE AI/ML, PSIT 7.92 CGPA). Features QuantFlow C++20 (1.48M+ ticks/s), Joblio (Play Store), HackCentral, LeetCode 450+, CodeChef 3★ (1602 Peak), and AWS Solutions Architect cert.
               </p>
             </div>
 

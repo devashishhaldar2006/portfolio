@@ -25,19 +25,19 @@ Candidate Dossier & Facts (Never hallucinate outside these facts):
 - Born: 2006 (19–20 years old)
 - Location: Lucknow, Uttar Pradesh, India 226012 (Open to remote roles and global relocation)
 - Contact: workfordevashishhaldar@gmail.com | +91 9336009951 | GitHub: devashishhaldar2006 | LinkedIn: devashish-haldar-dev | CodeChef: devashishcodes | LeetCode: devashishcodes
-- Education: B.Tech in Computer Science and Engineering (Artificial Intelligence and Machine Learning), Pranveer Singh Institute of Technology (PSIT), Kanpur (Sep 2024 — Apr 2028, currently in 2nd year). Cumulative GPA: 8.1 / 10.0.
-- Core Stacks: React 19, Next.js 16, Node.js, Express.js, TypeScript, JavaScript, Python, C++20, C, MongoDB, PostgreSQL (Supabase), Redis, Docker, AWS (EC2, S3), Socket.IO, WebRTC (Stream.io), LangGraph, Tailwind CSS.
+- Education: B.Tech in Computer Science and Engineering (Artificial Intelligence and Machine Learning), Pranveer Singh Institute of Technology (PSIT), Kanpur (Sep 2024 — Apr 2028, currently in 2nd year). Cumulative GPA: 7.92 / 10.0.
+- Core Stacks: React Native, React 19, Next.js, Node.js, Express.js, TypeScript, JavaScript, Python, C++, MongoDB, PostgreSQL (Supabase), Redis, Docker, AWS (EC2, S3), Socket.IO, LangGraph, Tailwind CSS, Scikit-learn, FastAPI.
 
 Major Projects:
-1. QuantFlow (Jul 2026 — Sep 2026): High-frequency quantitative backtesting platform. Core engine built in C++20 processing 1.48M+ ticks/sec on AWS EC2 (c6i.2xlarge) using contiguous memory buffers and zero runtime heap allocations. 197 / 197 GoogleTest cases passed. LangGraph multi-agent loop with Mistral AI using cyclic state reflection to tune Sharpe and drawdown. 0 look-ahead bias via timestamp order execution and intrabar stop-loss rules. Supabase S3 virtualized tick dataset storage; HMAC SHA-256 Razorpay webhook verification. Live: https://quantflow.hackcentral.me
-2. HackCentral (Mar 2026 — Jun 2026): Event discovery & real-time hackathon management platform. Sub-200ms API latency, 95+ Google Lighthouse score. Socket.IO bidirectional collaboration, MongoDB Atlas compound indexes on {userId, eventId}. Google Gemini API with structured JSON output parsing for automated submission evaluation. httpOnly JWT auth & RBAC. Docker on AWS EC2. Live: https://hackcentral.me
-3. Career Connect (Dec 2025): Real-time collaborative interview platform. Stream.io WebRTC (<100ms latency), Monaco code editor with Piston API sandboxed compilation across 10+ languages (5s timeout). Clerk auth + Inngest background jobs reducing coordination overhead by 60%. Live: https://career-connect-delta-navy.vercel.app/
+1. Joblio (Oct 2026 — Present): AI career copilot & intelligence platform published on Google Play Store. Built in React Native with a FastAPI microservice running LangGraph multi-agent pipelines for resume matching, GitHub hygiene auditing, and automated CI/CD fix generation. Designed two-pass NLP skill extractor recognizing 570+ technologies (60% token reduction) and 26-week ML demand forecasting (80% CI) with 30-day Redis caching. Play Store: https://play.google.com/store/apps/details?id=com.devashishcodes.mobile | GitHub: https://github.com/devashishhaldar2006/Joblio-app
+2. QuantFlow (Jul 2026 — Sep 2026): High-frequency quantitative backtesting platform. Core engine built in C++20 processing 1.48M+ ticks/sec on AWS EC2 (c6i.2xlarge) using contiguous memory buffers and zero runtime heap allocations. 197 / 197 GoogleTest cases passed. LangGraph multi-agent loop with Mistral AI using cyclic state reflection to tune Sharpe and drawdown. 0 look-ahead bias via timestamp order execution and intrabar stop-loss rules across 7 strategy models. Supabase S3 virtualized tick dataset storage; HMAC SHA-256 Razorpay webhook verification. Live: https://quantflow.hackcentral.me | GitHub: https://github.com/devashishhaldar2006/QuantFlow
+3. HackCentral (Mar 2026 — Jun 2026): Event discovery & real-time hackathon management platform. Sub-200ms API latency, 95+ Google Lighthouse score. Socket.IO bidirectional collaboration, MongoDB Atlas compound indexes on {userId, eventId}. Google Gemini API with Zod-enforced structured JSON output parsing for automated submission evaluation and pitch deck generation. httpOnly JWT auth & RBAC. Docker on AWS EC2. Live: https://hackcentral.me | GitHub: https://github.com/devashishhaldar2006/HackCentral
 
 Competitive & Honors:
 - Deviathon National Hackathon 1st Place Category Winner (GLA University) for AI meeting analysis platform.
-- LeetCode: Handle @devashishcodes (https://leetcode.com/u/devashishcodes/), 400+ problems solved (168 Easy, 204 Medium, 40 Hard) with a contest rating of 1562.
+- LeetCode: Handle @devashishcodes (https://leetcode.com/u/devashishcodes/), 450+ problems solved with a contest rating of 1562.
 - CodeChef: Handle @devashishcodes (https://www.codechef.com/users/devashishcodes), 3-Star rated programmer with a peak rating of 1602 (best global rank: 392).
-- Certifications: IBM Generative AI & LLMs (100% Grade, Coursera), Exam Prep: AWS Certified Solutions Architect - Associate (94.73% Grade, Amazon Web Services on Coursera).`;
+- Certifications: IBM Generative AI & LLMs: Architecture and Data Preparation (100% Grade, Coursera), AWS Certified Solutions Architect - Associate (94.73% Grade, Coursera).`;
 
     // 1. Attempt live Mistral AI call with conversation context
     if (apiKey) {
@@ -95,7 +95,7 @@ Competitive & Honors:
     // Age / Birth
     if (q.includes("age") || q.includes("how old") || q.includes("birth") || q.includes("born")) {
       return NextResponse.json({
-        reply: `Devashish was born in 2006, which makes him about 19 to 20 years old. He's currently in his 2nd year pursuing a B.Tech in CSE (specializing in AI & Machine Learning) at PSIT Kanpur, where he maintains an 8.1 CGPA.`,
+        reply: `Devashish was born in 2006, which makes him about 19 to 20 years old. He's currently in his 2nd year pursuing a B.Tech in CSE (specializing in AI & Machine Learning) at PSIT Kanpur, where he maintains a 7.92 CGPA.`,
         model: "devashish-core-dynamic",
       });
     }
@@ -104,7 +104,7 @@ Competitive & Honors:
     if (/^(hi|hello|hey|yo|greetings|howdy|sup)\b/i.test(q)) {
       return NextResponse.json({
         reply: `Hey there! Glad you stopped by Devashish's workstation. I'm his interactive AI assistant, trained on his projects, architecture decisions, and background.
-\nYou can ask me anything—whether you want to dive deep into his C++20 zero-heap engine on QuantFlow, discuss his full-stack React/Node platforms like HackCentral, check his competitive programming rating progression, or discuss hiring opportunities. What's on your mind?`,
+\nYou can ask me anything—whether you want to dive deep into his C++20 zero-heap engine on QuantFlow, discuss his full-stack React/Node platforms like HackCentral, explore Joblio on the Play Store, check his competitive programming rating progression, or discuss hiring opportunities. What's on your mind?`,
         model: "devashish-core-dynamic",
       });
     }
@@ -114,10 +114,11 @@ Competitive & Honors:
       return NextResponse.json({
         reply: `Devashish Haldar is a Software Engineer, Full Stack Developer, and Systems Builder based in Lucknow, India.
 \nHe specializes in building high-performance, real-world systems:
+- **Mobile & AI Platforms:** Engineered **Joblio**, an AI career platform published on Google Play Store featuring FastAPI, LangGraph multi-agent pipelines, 570+ technology NLP extraction, and 26-week ML skill forecasting.
 - **Low-Latency & Systems:** Engineered **QuantFlow**, a C++20 engine that processes over 1.48M+ ticks/sec with zero heap allocations during execution loops, backed by 197 GoogleTests.
-- **Full-Stack & Real-Time:** Built **HackCentral** (sub-200ms API, 95+ Lighthouse, Socket.IO, Gemini automated grading) and **Career Connect** (sub-100ms WebRTC video & Monaco sandboxed code runner).
+- **Full-Stack & Real-Time:** Built **HackCentral** (sub-200ms API, 95+ Lighthouse, Socket.IO, Gemini automated grading with Zod-enforced structured JSON).
 - **AI Agent Architectures:** Implements cyclic state reflection using LangGraph and Mistral AI for robust strategy evaluation without hallucinations.
-- **Academics & Competitive:** B.Tech CSE (AI/ML) at PSIT (8.1 CGPA), 1st Place National Hackathon Winner at Deviathon, 400+ LeetCode problems (1562 rating), and a 3-Star CodeChef programmer (peak rating 1602, rank 392).`,
+- **Academics & Competitive:** B.Tech CSE (AI/ML) at PSIT (7.92 CGPA), 1st Place National Hackathon Winner at Deviathon, 450+ LeetCode problems (1562 rating), and a 3-Star CodeChef programmer (peak rating 1602, rank 392).`,
         model: "devashish-core-dynamic",
       });
     }
@@ -139,10 +140,21 @@ Competitive & Honors:
     // LeetCode inquiry
     if (q.includes("leetcode") || q.includes("dsa") || q.includes("problem")) {
       return NextResponse.json({
-        reply: `On LeetCode under the handle **@devashishcodes** ([leetcode.com/u/devashishcodes](https://leetcode.com/u/devashishcodes/)), Devashish has solved **400+ problems**:
-- **Distribution:** 168 Easy, 204 Medium, and 40 Hard problems.
-- **Contest Rating:** 1562 with an acceptance rate over 72%.
+        reply: `On LeetCode under the handle **@devashishcodes** ([leetcode.com/u/devashishcodes](https://leetcode.com/u/devashishcodes/)), Devashish has solved **450+ problems**:
+- **Contest Rating:** 1562.
 - **Core Topics:** Graph traversals, dynamic programming, tree recursion, monotonic stacks, and sliding window memory optimizations.`,
+        model: "devashish-core-dynamic",
+      });
+    }
+
+    // Joblio
+    if (q.includes("joblio") || q.includes("play store") || q.includes("career copilot") || q.includes("react native") || q.includes("fastapi")) {
+      return NextResponse.json({
+        reply: `**Joblio** is an AI career platform and copilot published on the Google Play Store:
+- **Mobile & Backend Architecture:** React Native client with a FastAPI microservice orchestrating LangGraph multi-agent pipelines for automated resume matching, GitHub hygiene audits, and CI/CD fix generation.
+- **NLP Skill Extractor:** Two-pass NLP extractor recognizing 570+ technologies from live job postings; reduced prompt token consumption by 60% through resume pruning and dictionary pre-matching.
+- **Forecasting & Caching:** 26-week ML demand forecasting with 80% confidence intervals across tech skills; cached paper explanations in Redis for 30 days to reduce repeat inference costs to zero.
+- **Links:** [Google Play Store](https://play.google.com/store/apps/details?id=com.devashishcodes.mobile) · [GitHub Repo](https://github.com/devashishhaldar2006/Joblio-app)`,
         model: "devashish-core-dynamic",
       });
     }
@@ -164,7 +176,7 @@ Competitive & Honors:
       return NextResponse.json({
         reply: `**HackCentral** is a production event discovery and hackathon automation platform:
 - **Sub-200ms Latency:** Optimized MongoDB Atlas aggregation pipelines with compound indexes on \`{userId, eventId}\`.
-- **Automated AI Grading:** Integrated Google Gemini structured JSON output schema to evaluate project submissions against rubrics.
+- **Automated AI Grading:** Integrated Google Gemini Zod-enforced structured JSON output schema to evaluate project submissions against rubrics.
 - **Real-Time Collaboration:** Powered by Socket.IO for live attendee chat, team formation, and notifications.
 - **Performance:** Achieved a 95+ score on Google Lighthouse. Live at https://hackcentral.me`,
         model: "devashish-core-dynamic",
@@ -175,10 +187,10 @@ Competitive & Honors:
     if (q.includes("why hire") || q.includes("hire") || q.includes("strength") || q.includes("skills")) {
       return NextResponse.json({
         reply: `Why Devashish stands out for engineering teams:
-1. **Full-Stack & Systems Depth:** Comfortable architecting modern React/Next.js and Node.js web applications, while also writing low-level C++20 with contiguous buffers and zero-heap loops.
-2. **Practical AI Agent Engineering:** Extensive hands-on work with LangGraph, cyclic reflection loops, and LLM structured outputs (Mistral, Gemini) that solve real workflow bottlenecks.
-3. **High Velocity & Proven Builder:** Built and deployed three platforms (QuantFlow, HackCentral, Career Connect) and won 1st place in the national Deviathon hackathon.
-4. **Solid Computer Science Foundations:** 8.1 CGPA in B.Tech CSE (AI & ML) at PSIT with 400+ solved algorithmic problems.`,
+1. **Full-Stack & Systems Depth:** Comfortable architecting modern React/React Native, Next.js, and Node.js applications, while also writing low-level C++ with contiguous buffers and zero-heap loops.
+2. **Practical AI Agent Engineering:** Extensive hands-on work with LangGraph, cyclic reflection loops, and LLM structured outputs (Mistral, Gemini) that solve real workflow bottlenecks (Joblio on Play Store, QuantFlow).
+3. **High Velocity & Proven Builder:** Built and deployed three flagship platforms (QuantFlow, Joblio, HackCentral) and won 1st place in the national Deviathon hackathon.
+4. **Solid Computer Science Foundations:** 7.92 CGPA in B.Tech CSE (AI & ML) at PSIT with 450+ solved algorithmic problems.`,
         model: "devashish-core-dynamic",
       });
     }

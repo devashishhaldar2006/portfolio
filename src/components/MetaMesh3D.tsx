@@ -425,7 +425,7 @@ export function MetaMesh3D() {
             {mode === "github"
               ? "451+ COMMITS"
               : mode === "leetcode"
-              ? "400+ PROBLEMS · 1562 RATING"
+              ? "450+ PROBLEMS · 1562 RATING"
               : "3★ · PEAK 1602 · RANK 392"}
           </span>
         </div>

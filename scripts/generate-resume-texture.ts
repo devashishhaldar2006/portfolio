@@ -105,7 +105,7 @@ ctx.font = 'bold 34px "Segoe UI", Arial, sans-serif';
 ctx.fillText('Cumulative GPA: ', leftMargin + 30, y);
 const gpaW = ctx.measureText('Cumulative GPA: ').width;
 ctx.font = '34px "Segoe UI", Arial, sans-serif';
-ctx.fillText('8.1 / 10.0', leftMargin + 30 + gpaW, y);
+ctx.fillText('7.92 / 10.0', leftMargin + 30 + gpaW, y);
 y += 56;
 
 ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
@@ -140,15 +140,16 @@ function drawSkill(cat: string, items: string) {
   ctx.font = '34px "Segoe UI", Arial, sans-serif';
   ctx.fillStyle = '#1E293B';
   ctx.fillText(items, leftMargin + w + 14, y);
-  y += 48;
+  y += 46;
 }
 
-drawSkill('Languages: ', 'C++20, C, Python, JavaScript (ES6+), TypeScript, SQL, HTML5, CSS3');
-drawSkill('Frameworks & Libraries: ', 'Next.js 16, React 19, Node.js, Express.js, Tailwind CSS, LangGraph, Socket.IO, Prisma ORM, Recharts');
-drawSkill('Developer Tools & Cloud: ', 'Git, GitHub, Docker, AWS (EC2, S3), Supabase (PostgreSQL), MongoDB Atlas, Redis, CMake, Vercel');
-drawSkill('Core Concepts: ', 'Data Structures & Algorithms, Object-Oriented Programming, System Design, REST APIs, WebSockets, CI/CD');
+drawSkill('Languages: ', 'C++, Python, JavaScript, TypeScript, SQL');
+drawSkill('Frameworks & Libraries: ', 'Next.js, React, React Native, Node.js, Express.js, Tailwind CSS, Socket.IO, Prisma ORM');
+drawSkill('Developer Tools & Cloud: ', 'Git, GitHub, Docker, AWS (EC2, S3), Supabase (PostgreSQL), MongoDB, Redis');
+drawSkill('AI & Machine Learning: ', 'LangGraph, Scikit-learn, NumPy, Pandas, Matplotlib');
+drawSkill('Core Concepts: ', 'Data Structures & Algorithms, Low Level Design, Database Management Systems, Operating Systems');
 
-y += 18;
+y += 14;
 
 // 3. PROJECTS
 drawSectionHeader('Projects');
@@ -161,12 +162,12 @@ const qfW = ctx.measureText('QuantFlow').width;
 
 ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
 ctx.fillStyle = '#475569';
-ctx.fillText(' |  C++20, Next.js, LangGraph, Mistral AI, AWS EC2  |  GitHub  |  quantflow.hackcentral.me', leftMargin + qfW, y);
+ctx.fillText(' |  C++, Next.js, LangGraph, Mistral AI, AWS EC2  |  GitHub  |  quantflow.hackcentral.me', leftMargin + qfW, y);
 
 const qfDate = 'Jul 2026 -- Sep 2026';
 ctx.font = '34px "Segoe UI", Arial, sans-serif';
 ctx.fillText(qfDate, rightMargin - ctx.measureText(qfDate).width, y);
-y += 46;
+y += 44;
 
 drawBullet([
   { text: 'Engineered a quantitative backtesting engine in ' },
@@ -181,18 +182,60 @@ drawBullet([
 drawBullet([
   { text: 'Architected a ' },
   { text: 'LangGraph multi-agent system', bold: true },
-  { text: ' with Mistral AI using cyclic state reflection to parse natural language strategies, validate parameter bounds, and iteratively tune Sharpe and drawdown before memo synthesis.' }
+  { text: ' with Mistral AI using cyclic state reflection to parse natural language strategies, validate parameter bounds, and iteratively tune Sharpe ratio and maximum drawdown before memo synthesis.' }
 ]);
 
 drawBullet([
-  { text: 'Eliminated look-ahead bias via timestamp order execution and conservative intrabar stop-loss rules across ' },
+  { text: 'Eliminated look-ahead bias via timestamp-ordered execution and conservative intrabar stop-loss rules across ' },
   { text: '7 strategy models', bold: true },
   { text: '; virtualized tick datasets via Supabase S3 and secured checkout with ' },
   { text: 'HMAC SHA-256 Razorpay webhooks', bold: true },
   { text: '.' }
 ]);
 
-y += 18;
+y += 14;
+
+// Joblio
+ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#0F172A';
+ctx.fillText('Joblio', leftMargin, y);
+const jbW = ctx.measureText('Joblio').width;
+
+ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
+ctx.fillStyle = '#475569';
+ctx.fillText(' |  React Native, LangGraph, Groq, MongoDB, Redis  |  GitHub  |  Google Play Store', leftMargin + jbW, y);
+
+const jbDate = 'Oct 2026 -- Present';
+ctx.font = '34px "Segoe UI", Arial, sans-serif';
+ctx.fillText(jbDate, rightMargin - ctx.measureText(jbDate).width, y);
+y += 44;
+
+drawBullet([
+  { text: 'Published on Google Play Store', bold: true },
+  { text: '; built a full-stack AI career platform in React Native with a FastAPI microservice running ' },
+  { text: 'LangGraph multi-agent pipelines', bold: true },
+  { text: ' for resume matching, GitHub hygiene auditing, and automated CI/CD fix generation.' }
+]);
+
+drawBullet([
+  { text: 'Designed a two-pass NLP skill extractor recognizing ' },
+  { text: '570+ technologies', bold: true },
+  { text: ' from live job listings; reduced prompt token consumption by ' },
+  { text: '60%', bold: true },
+  { text: ' via resume pruning and deterministic dictionary lookups before LLM inference.' }
+]);
+
+drawBullet([
+  { text: 'Built ' },
+  { text: '26-week ML demand forecasting', bold: true },
+  { text: ' with ' },
+  { text: '80% confidence intervals', bold: true },
+  { text: ' across tech skills; cached paper explanations in Redis for ' },
+  { text: '30 days', bold: true },
+  { text: ', cutting repeat inference costs to zero.' }
+]);
+
+y += 14;
 
 // HackCentral
 ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
@@ -207,7 +250,7 @@ ctx.fillText(' |  React, Node.js, Express, MongoDB, Socket.IO, AWS EC2  |  GitHu
 const hcDate = 'Mar 2026 -- Jun 2026';
 ctx.font = '34px "Segoe UI", Arial, sans-serif';
 ctx.fillText(hcDate, rightMargin - ctx.measureText(hcDate).width, y);
-y += 46;
+y += 44;
 
 drawBullet([
   { text: 'Architected an event discovery platform delivering ' },
@@ -220,55 +263,18 @@ drawBullet([
 drawBullet([
   { text: 'Implemented real-time bidirectional messaging via ' },
   { text: 'Socket.IO', bold: true },
-  { text: ' and integrated Gemini API with structured JSON output parsing to automate hackathon submission evaluation and code quality analysis.' }
+  { text: ' and integrated Gemini API with ' },
+  { text: 'Zod-enforced', bold: true },
+  { text: ' structured JSON output to automate hackathon submission evaluation and pitch deck generation.' }
 ]);
 
 drawBullet([
-  { text: 'Engineered secure RBAC session management with ' },
+  { text: 'Engineered secure Role-Based Access Control (RBAC) with ' },
   { text: 'httpOnly cookies, JWT, and Google OAuth', bold: true },
-  { text: ', containerizing micro-services with multi-stage Docker builds and deploying automated CI/CD pipelines to an AWS EC2 instance.' }
+  { text: '; containerized microservices with multi-stage Docker builds and deployed automated CI/CD pipelines to AWS EC2.' }
 ]);
 
-y += 18;
-
-// Career Connect
-ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
-ctx.fillStyle = '#0F172A';
-ctx.fillText('Career Connect', leftMargin, y);
-const ccW = ctx.measureText('Career Connect').width;
-
-ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
-ctx.fillStyle = '#475569';
-ctx.fillText(' |  React 19, Stream.io, Clerk, Monaco Editor, Piston API  |  GitHub  |  career-connect-delta-navy.vercel.app', leftMargin + ccW, y);
-
-const ccDate = 'Dec 2025';
-ctx.font = '34px "Segoe UI", Arial, sans-serif';
-ctx.fillText(ccDate, rightMargin - ctx.measureText(ccDate).width, y);
-y += 46;
-
-drawBullet([
-  { text: 'Built a real-time collaborative coding platform with ' },
-  { text: 'WebRTC video conferencing', bold: true },
-  { text: ' and live chat via Stream.io with ' },
-  { text: 'sub-100ms latency', bold: true },
-  { text: ', featuring automated reconnection and state recovery logic.' }
-]);
-
-drawBullet([
-  { text: 'Integrated an interactive ' },
-  { text: 'Monaco code editor with Piston API execution', bold: true },
-  { text: ', enforcing 5s execution timeouts to sandbox compilation across ' },
-  { text: '10+ programming languages', bold: true },
-  { text: ' with regex error line mapping.' }
-]);
-
-drawBullet([
-  { text: 'Engineered event-driven interview tracking workflows using Clerk authentication and Inngest background jobs, automating post-interview score recording and reducing manual coordination overhead by ' },
-  { text: '60%', bold: true },
-  { text: '.' }
-]);
-
-y += 18;
+y += 14;
 
 // 4. ACHIEVEMENTS
 drawSectionHeader('Achievements & Competitive Programming');
@@ -279,16 +285,16 @@ drawBullet([
 ]);
 
 drawBullet([
-  { text: 'LeetCode (@devashishcodes): ', bold: true },
+  { text: 'LeetCode: ', bold: true },
   { text: 'Solved ' },
-  { text: '400+', bold: true },
+  { text: '450+', bold: true },
   { text: ' Data Structures & Algorithms problems with a contest rating of ' },
   { text: '1562', bold: true },
   { text: '.' }
 ]);
 
 drawBullet([
-  { text: 'CodeChef (@devashishcodes): ', bold: true },
+  { text: 'CodeChef: ', bold: true },
   { text: 'Achieved ' },
   { text: '3-Star', bold: true },
   { text: ' rating with a peak rating of ' },
@@ -298,7 +304,7 @@ drawBullet([
   { text: '.' }
 ]);
 
-y += 18;
+y += 14;
 
 // 5. CERTIFICATIONS
 drawSectionHeader('Certifications');

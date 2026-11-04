@@ -23,6 +23,26 @@ interface ProjectItem {
 // 100% Exact Resume Details
 const projects: ProjectItem[] = [
   {
+    id: "joblio",
+    title: "Joblio",
+    role: "Mobile & AI Systems Engineer",
+    period: "Oct 2026 — Present",
+    tagline: "AI career copilot & intelligence platform published on Google Play Store",
+    what: "Published on Google Play Store; built a full-stack AI career platform in React Native with a FastAPI microservice running LangGraph multi-agent pipelines.",
+    why: "Job applicants face low response rates and misaligned resumes, while engineers lack proactive GitHub hygiene auditing, automated CI/CD fixes, and accurate tech skill forecasting.",
+    how: "Built a FastAPI microservice orchestrating LangGraph multi-agent loops for resume matching, GitHub hygiene auditing, and automated CI/CD fix generation. Designed a two-pass NLP skill extractor recognizing 570+ technologies from live job listings with 60% token reduction. Built 26-week ML demand forecasting with 80% confidence intervals and cached explanations in Redis for 30 days.",
+    result: "Successfully published on Google Play Store, reduced LLM inference costs and token consumption by 60%, and eliminated repeat explanation costs via 30-day Redis caching.",
+    metrics: [
+      { label: "Deployment", value: "Play Store Live" },
+      { label: "Skills Identified", value: "570+ Tech" },
+      { label: "Token Savings", value: "-60% LLM Cost" },
+      { label: "ML Forecast", value: "26-Wk (80% CI)" },
+    ],
+    tags: ["React Native", "LangGraph", "FastAPI", "Groq", "MongoDB", "Redis", "NLP", "Machine Learning"],
+    githubUrl: "https://github.com/devashishhaldar2006/Joblio-app",
+    liveUrl: "https://play.google.com/store/apps/details?id=com.devashishcodes.mobile",
+  },
+  {
     id: "hackcentral",
     title: "HackCentral",
     role: "Full Stack & Distributed Architect",
@@ -30,13 +50,13 @@ const projects: ProjectItem[] = [
     tagline: "Event discovery, real-time collaboration, and automated hackathon evaluation platform",
     what: "Architected an event discovery and hackathon management platform delivering sub-200ms API response times and a 95+ Google Lighthouse score.",
     why: "Event organizers require fast participant team formation, reliable real-time channels, and an automated, unbiased method to parse and evaluate hackathon submissions.",
-    how: "Optimized database queries with compound indexing on {userId, eventId} and lean MongoDB aggregations. Implemented real-time bidirectional messaging via Socket.IO and integrated Gemini API with structured JSON output parsing to automate submission evaluation. Containerized with multi-stage Docker builds deployed to AWS EC2.",
+    how: "Optimized database queries with compound indexing on {userId, eventId} and lean MongoDB aggregations. Implemented real-time bidirectional messaging via Socket.IO and integrated Gemini API with Zod-enforced structured JSON output parsing to automate submission evaluation. Containerized with multi-stage Docker builds deployed to AWS EC2.",
     result: "Delivered sub-200ms API response times, achieved a 95+ Google Lighthouse performance score, and securely isolated user vs organizer roles with httpOnly cookie JWT sessions.",
     metrics: [
       { label: "API Latency", value: "< 200ms" },
       { label: "Lighthouse Score", value: "95+" },
       { label: "Architecture", value: "Docker / EC2" },
-      { label: "AI Evaluation", value: "Gemini Structured JSON" },
+      { label: "AI Evaluation", value: "Zod Structured JSON" },
     ],
     tags: ["React", "Node.js", "Express", "MongoDB", "Socket.IO", "AWS EC2", "Docker", "Gemini API"],
     githubUrl: "https://github.com/devashishhaldar2006/HackCentral",

@@ -23,7 +23,7 @@ export function RecruiterTerminalChat() {
     {
       role: "system",
       content:
-        "**DEVASHISH-CORE v2.4 (Mistral AI engine)**\nSystem initialized. Loaded candidate knowledge graph: PSIT CSE (8.1 CGPA) · QuantFlow (1.48M ticks/s C++20) · HackCentral · LeetCode 400+.\nAsk any technical, architectural, or recruitment question.",
+        "**DEVASHISH-CORE v2.4 (Mistral AI engine)**\nSystem initialized. Loaded candidate knowledge graph: PSIT CSE (7.92 CGPA) · QuantFlow (1.48M ticks/s C++20) · Joblio · HackCentral · LeetCode 450+.\nAsk any technical, architectural, or recruitment question.",
       time: "",
     },
   ]);

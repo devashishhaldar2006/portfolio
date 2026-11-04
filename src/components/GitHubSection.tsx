@@ -16,6 +16,15 @@ interface RepoItem {
 
 const repos: RepoItem[] = [
   {
+    name: "Joblio-app",
+    desc: "AI career copilot & intelligence platform in React Native with LangGraph multi-agent pipelines, 570+ skill NLP extraction, and 26-week ML demand forecasting. Live on Google Play Store.",
+    lang: "React Native / Python",
+    langColor: "#3178c6",
+    stars: "Play Store",
+    commits: "LangGraph Multi-Agent",
+    url: "https://github.com/devashishhaldar2006/Joblio-app",
+  },
+  {
     name: "QuantFlow",
     desc: "Quantitative backtesting engine in C++20 processing 1.48M+ ticks/sec with LangGraph AI strategy reflection and Supabase S3 virtualized tick dataset storage.",
     lang: "C++20 / TypeScript",
@@ -32,15 +41,6 @@ const repos: RepoItem[] = [
     stars: "95+ Lighthouse",
     commits: "Sub-200ms API",
     url: "https://github.com/devashishhaldar2006/HackCentral",
-  },
-  {
-    name: "career-connect",
-    desc: "Collaborative technical interview platform with Stream.io WebRTC, Monaco code editor, and Piston sandboxed execution across 10+ languages.",
-    lang: "React 19 / TypeScript",
-    langColor: "#2b7489",
-    stars: "< 100ms Latency",
-    commits: "10+ Languages",
-    url: "https://github.com/devashishhaldar2006/career-connect",
   },
 ];
 
@@ -130,7 +130,7 @@ export function GitHubSection() {
     };
   }, [data]);
 
-  // Generate LeetCode Activity Calendar (Matching same period & verified 400+ problems solved)
+  // Generate LeetCode Activity Calendar (Matching same period & verified 450+ problems solved)
   const leetcodeWeeks = useMemo(() => {
     if (weeks.length === 0) return [];
     return weeks.map((week, wIdx) => {
@@ -351,7 +351,7 @@ export function GitHubSection() {
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-amber-600" />
                 <span className="font-bold text-[#111111]">
-                  LEETCODE: 400+ SOLVED · 1562 CONTEST RATING
+                  LEETCODE: 450+ SOLVED · 1562 CONTEST RATING
                 </span>
                 <span className="text-[10px] bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full font-semibold">
                   COMPETITIVE DSA
