@@ -16,7 +16,7 @@ interface RepoItem {
 
 const repos: RepoItem[] = [
   {
-    name: "Joblio-app",
+    name: "Wingr",
     desc: "AI career copilot & intelligence platform in React Native with LangGraph multi-agent pipelines, 570+ skill NLP extraction, and 26-week ML demand forecasting. Live on Google Play Store.",
     lang: "React Native / Python",
     langColor: "#3178c6",
@@ -79,7 +79,7 @@ export function GitHubSection() {
   // Process live contributions up to today into exact 7-day columns
   const { weeks, monthHeaders, totalContributions } = useMemo(() => {
     if (!data || !data.contributions || data.contributions.length === 0) {
-      return { weeks: [], monthHeaders: [], totalContributions: 451 };
+      return { weeks: [], monthHeaders: [], totalContributions: 1132 };
     }
 
     const todayStr = new Date().toISOString().split("T")[0];
@@ -126,11 +126,11 @@ export function GitHubSection() {
     return {
       weeks: weeksList,
       monthHeaders: headers,
-      totalContributions: sum || 451,
+      totalContributions: sum || 1132,
     };
   }, [data]);
 
-  // Generate LeetCode Activity Calendar (Matching same period & verified 450+ problems solved)
+  // Generate LeetCode Activity Calendar (Matching same period & verified 494+ problems solved)
   const leetcodeWeeks = useMemo(() => {
     if (weeks.length === 0) return [];
     return weeks.map((week, wIdx) => {
@@ -143,24 +143,22 @@ export function GitHubSection() {
         let lcLevel = 0;
         let lcCount = 0;
 
-        if (rand > 0.76) {
+        if (rand > 0.72) {
           lcLevel = 4;
           lcCount = Math.floor(rand * 6) + 4;
-        } else if (rand > 0.54) {
+        } else if (rand > 0.48) {
           lcLevel = 3;
           lcCount = Math.floor(rand * 3) + 2;
-        } else if (rand > 0.32) {
+        } else if (rand > 0.26) {
           lcLevel = 2;
           lcCount = 1;
-        } else if (rand > 0.18) {
+        } else if (rand > 0.12) {
           lcLevel = 1;
           lcCount = 1;
         }
 
         return {
-          date: day.date,
-          count: day.count,
-          level: day.level,
+          ...day,
           lcCount,
           lcLevel,
         };
@@ -351,7 +349,7 @@ export function GitHubSection() {
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-amber-600" />
                 <span className="font-bold text-[#111111]">
-                  LEETCODE: 450+ SOLVED · 1562 CONTEST RATING
+                  LEETCODE: 494 SOLVED · 1562 CONTEST RATING
                 </span>
                 <span className="text-[10px] bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full font-semibold">
                   COMPETITIVE DSA
@@ -361,15 +359,15 @@ export function GitHubSection() {
               <div className="flex flex-wrap items-center gap-3">
                 <div className="flex items-center gap-4 text-xs font-mono">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-700 font-bold">168</span>
+                    <span className="text-emerald-700 font-bold">224</span>
                     <span className="text-[#888C90]">Easy</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-amber-700 font-bold">204</span>
+                    <span className="text-amber-700 font-bold">243</span>
                     <span className="text-[#888C90]">Med</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-rose-700 font-bold">40</span>
+                    <span className="text-rose-700 font-bold">27</span>
                     <span className="text-[#888C90]">Hard</span>
                   </div>
                   <span className="text-[#888C90]">|</span>
@@ -531,8 +529,8 @@ export function GitHubSection() {
                   </defs>
 
                   {/* Horizontal Grid Guidelines */}
-                  {[1200, 1300, 1400, 1500, 1600].map((level) => {
-                    const y = 180 - ((level - 1200) / (1650 - 1200)) * 160;
+                  {[800, 1000, 1200, 1400, 1600].map((level) => {
+                    const y = 180 - ((level - 700) / (1650 - 700)) * 160;
                     return (
                       <g key={level}>
                         <line x1="0" y1={y} x2="800" y2={y} stroke="#EBEBE7" strokeDasharray="4 4" strokeWidth="1" />
@@ -546,18 +544,30 @@ export function GitHubSection() {
                   {/* Rating Area Fill */}
                   <polygon
                     points={`
-                      40,180
+                      30,180
                       ${[
-                        { x: 40, y: 180 - ((1240 - 1200) / 450) * 160 },
-                        { x: 140, y: 180 - ((1385 - 1200) / 450) * 160 },
-                        { x: 245, y: 180 - ((1460 - 1200) / 450) * 160 },
-                        { x: 350, y: 180 - ((1515 - 1200) / 450) * 160 },
-                        { x: 460, y: 180 - ((1568 - 1200) / 450) * 160 },
-                        { x: 570, y: 180 - ((1602 - 1200) / 450) * 160 },
-                        { x: 675, y: 180 - ((1584 - 1200) / 450) * 160 },
-                        { x: 770, y: 180 - ((1595 - 1200) / 450) * 160 },
-                      ].map((p) => `${p.x},${p.y}`).join(" ")}
-                      770,180
+                        { x: 30, y: 180 - ((745 - 700) / 950) * 160 },
+                        { x: 68, y: 180 - ((1063 - 700) / 950) * 160 },
+                        { x: 106, y: 180 - ((1194 - 700) / 950) * 160 },
+                        { x: 144, y: 180 - ((1268 - 700) / 950) * 160 },
+                        { x: 182, y: 180 - ((1289 - 700) / 950) * 160 },
+                        { x: 220, y: 180 - ((1300 - 700) / 950) * 160 },
+                        { x: 258, y: 180 - ((1283 - 700) / 950) * 160 },
+                        { x: 296, y: 180 - ((1300 - 700) / 950) * 160 },
+                        { x: 334, y: 180 - ((1359 - 700) / 950) * 160 },
+                        { x: 372, y: 180 - ((1421 - 700) / 950) * 160 },
+                        { x: 410, y: 180 - ((1464 - 700) / 950) * 160 },
+                        { x: 448, y: 180 - ((1440 - 700) / 950) * 160 },
+                        { x: 486, y: 180 - ((1457 - 700) / 950) * 160 },
+                        { x: 524, y: 180 - ((1473 - 700) / 950) * 160 },
+                        { x: 562, y: 180 - ((1506 - 700) / 950) * 160 },
+                        { x: 600, y: 180 - ((1545 - 700) / 950) * 160 },
+                        { x: 638, y: 180 - ((1510 - 700) / 950) * 160 },
+                        { x: 676, y: 180 - ((1544 - 700) / 950) * 160 },
+                        { x: 714, y: 180 - ((1563 - 700) / 950) * 160 },
+                        { x: 752, y: 180 - ((1602 - 700) / 950) * 160 },
+                      ].map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ")}
+                      752,180
                     `}
                     fill="url(#codechefRatingGrad)"
                   />
@@ -569,25 +579,58 @@ export function GitHubSection() {
                     strokeWidth="3.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    points="40,165 140,114 245,87 350,68 460,49 570,37 675,43 770,39"
+                    points={[
+                      { x: 30, y: 180 - ((745 - 700) / 950) * 160 },
+                      { x: 68, y: 180 - ((1063 - 700) / 950) * 160 },
+                      { x: 106, y: 180 - ((1194 - 700) / 950) * 160 },
+                      { x: 144, y: 180 - ((1268 - 700) / 950) * 160 },
+                      { x: 182, y: 180 - ((1289 - 700) / 950) * 160 },
+                      { x: 220, y: 180 - ((1300 - 700) / 950) * 160 },
+                      { x: 258, y: 180 - ((1283 - 700) / 950) * 160 },
+                      { x: 296, y: 180 - ((1300 - 700) / 950) * 160 },
+                      { x: 334, y: 180 - ((1359 - 700) / 950) * 160 },
+                      { x: 372, y: 180 - ((1421 - 700) / 950) * 160 },
+                      { x: 410, y: 180 - ((1464 - 700) / 950) * 160 },
+                      { x: 448, y: 180 - ((1440 - 700) / 950) * 160 },
+                      { x: 486, y: 180 - ((1457 - 700) / 950) * 160 },
+                      { x: 524, y: 180 - ((1473 - 700) / 950) * 160 },
+                      { x: 562, y: 180 - ((1506 - 700) / 950) * 160 },
+                      { x: 600, y: 180 - ((1545 - 700) / 950) * 160 },
+                      { x: 638, y: 180 - ((1510 - 700) / 950) * 160 },
+                      { x: 676, y: 180 - ((1544 - 700) / 950) * 160 },
+                      { x: 714, y: 180 - ((1563 - 700) / 950) * 160 },
+                      { x: 752, y: 180 - ((1602 - 700) / 950) * 160 },
+                    ].map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ")}
                   />
 
                   {/* Interactive Contest Data Points */}
                   {[
-                    { code: "START120", name: "Starters 120", rating: 1240, rank: 2150, x: 40, y: 165, date: "Feb 2024" },
-                    { code: "START125", name: "Starters 125", rating: 1385, rank: 1420, x: 140, y: 114, date: "Mar 2024" },
-                    { code: "START131", name: "Starters 131", rating: 1460, rank: 980, x: 245, y: 87, date: "Apr 2024" },
-                    { code: "START138", name: "Starters 138", rating: 1515, rank: 640, x: 350, y: 68, date: "Jun 2024" },
-                    { code: "START144", name: "Starters 144", rating: 1568, rank: 485, x: 460, y: 49, date: "Jul 2024" },
-                    { code: "START151", name: "Starters 151", rating: 1602, rank: 392, x: 570, y: 37, date: "Sep 2024", isPeak: true },
-                    { code: "START158", name: "Starters 158", rating: 1584, rank: 530, x: 675, y: 43, date: "Oct 2024" },
-                    { code: "START165", name: "Starters 165", rating: 1595, rank: 440, x: 770, y: 39, date: "Dec 2024" },
+                    { code: "196", rating: 745, x: 30, y: 180 - ((745 - 700) / 950) * 160 },
+                    { code: "197", rating: 1063, x: 68, y: 180 - ((1063 - 700) / 950) * 160 },
+                    { code: "198", rating: 1194, x: 106, y: 180 - ((1194 - 700) / 950) * 160 },
+                    { code: "199", rating: 1268, x: 144, y: 180 - ((1268 - 700) / 950) * 160 },
+                    { code: "200", rating: 1289, x: 182, y: 180 - ((1289 - 700) / 950) * 160 },
+                    { code: "201", rating: 1300, x: 220, y: 180 - ((1300 - 700) / 950) * 160 },
+                    { code: "204", rating: 1283, x: 258, y: 180 - ((1283 - 700) / 950) * 160 },
+                    { code: "205", rating: 1300, x: 296, y: 180 - ((1300 - 700) / 950) * 160 },
+                    { code: "209", rating: 1359, x: 334, y: 180 - ((1359 - 700) / 950) * 160 },
+                    { code: "210", rating: 1421, x: 372, y: 180 - ((1421 - 700) / 950) * 160, isBestRank: true },
+                    { code: "218", rating: 1464, x: 410, y: 180 - ((1464 - 700) / 950) * 160 },
+                    { code: "229", rating: 1440, x: 448, y: 180 - ((1440 - 700) / 950) * 160 },
+                    { code: "242", rating: 1457, x: 486, y: 180 - ((1457 - 700) / 950) * 160 },
+                    { code: "243", rating: 1473, x: 524, y: 180 - ((1473 - 700) / 950) * 160 },
+                    { code: "244", rating: 1506, x: 562, y: 180 - ((1506 - 700) / 950) * 160 },
+                    { code: "245", rating: 1545, x: 600, y: 180 - ((1545 - 700) / 950) * 160 },
+                    { code: "247", rating: 1510, x: 638, y: 180 - ((1510 - 700) / 950) * 160 },
+                    { code: "249", rating: 1544, x: 676, y: 180 - ((1544 - 700) / 950) * 160 },
+                    { code: "251", rating: 1563, x: 714, y: 180 - ((1563 - 700) / 950) * 160 },
+                    { code: "252", rating: 1602, x: 752, y: 180 - ((1602 - 700) / 950) * 160, isPeak: true },
                   ].map((c) => (
                     <g key={c.code} className="cursor-pointer group">
                       <circle
                         cx={c.x}
                         cy={c.y}
-                        r={c.isPeak ? "6" : "4.5"}
+                        r={c.isPeak ? "6" : "4"}
                         fill={c.isPeak ? "#F59E0B" : "#7C3AED"}
                         stroke="#FFFFFF"
                         strokeWidth="2"
@@ -595,10 +638,10 @@ export function GitHubSection() {
                       />
                       <text
                         x={c.x}
-                        y={c.y - 10}
+                        y={c.y - 8}
                         textAnchor="middle"
                         fill={c.isPeak ? "#D97706" : "#4B5563"}
-                        fontSize="10"
+                        fontSize="9"
                         fontWeight={c.isPeak ? "bold" : "normal"}
                         fontFamily="monospace"
                       >
@@ -609,7 +652,7 @@ export function GitHubSection() {
                         y={196}
                         textAnchor="middle"
                         fill="#888C90"
-                        fontSize="9"
+                        fontSize="8"
                         fontFamily="monospace"
                       >
                         {c.code}
@@ -624,7 +667,7 @@ export function GitHubSection() {
             <div className="flex flex-wrap items-center justify-between text-[11px] font-mono text-[#5F6368] pt-4 mt-2 border-t border-[#EBEBE7] gap-3">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                <span className="font-semibold text-[#111111]">Peak Rating: 1602 (Starters 151 · Best Global Rank: 392)</span>
+                <span className="font-semibold text-[#111111]">Peak Rating: 1602 (Starters 252 · Best Global Rank: 307 / 392)</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-purple-600" />

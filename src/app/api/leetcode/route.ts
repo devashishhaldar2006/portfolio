@@ -45,12 +45,12 @@ export async function GET() {
       }
     }
 
-    // High-accuracy fallback verified from Devashish's exact resume
+    // High-accuracy fallback verified from Devashish's exact profile & resume
     return NextResponse.json({
-      totalSolved: 412,
-      easySolved: 168,
-      mediumSolved: 204,
-      hardSolved: 40,
+      totalSolved: 494,
+      easySolved: 224,
+      mediumSolved: 243,
+      hardSolved: 27,
       contestRating: 1562,
       globalRanking: 392,
       acceptanceRate: "72.4%",
@@ -58,10 +58,10 @@ export async function GET() {
     });
   } catch (err: any) {
     return NextResponse.json({
-      totalSolved: 412,
-      easySolved: 168,
-      mediumSolved: 204,
-      hardSolved: 40,
+      totalSolved: 494,
+      easySolved: 224,
+      mediumSolved: 243,
+      hardSolved: 27,
       contestRating: 1562,
       globalRanking: 392,
       acceptanceRate: "72.4%",

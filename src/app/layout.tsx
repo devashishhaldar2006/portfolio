@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Devashish Haldar — Software Engineer · Full Stack Developer · Builder",
   description:
-    "Building systems at the intersection of modern full-stack architectures, C++20 systems, and autonomous AI agents. Creator of QuantFlow, Joblio, and HackCentral.",
+    "Building systems at the intersection of modern full-stack architectures, C++20 systems, and autonomous AI agents. Creator of QuantFlow, Wingr, and HackCentral.",
   keywords: [
     "Devashish Haldar",
     "Full Stack Developer",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "Next.js",
     "Node.js",
     "QuantFlow",
-    "Joblio",
+    "Wingr",
     "C++20",
     "AI Agents",
   ],

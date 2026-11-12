@@ -29,7 +29,7 @@ Candidate Dossier & Facts (Never hallucinate outside these facts):
 - Core Stacks: React Native, React 19, Next.js, Node.js, Express.js, TypeScript, JavaScript, Python, C++, MongoDB, PostgreSQL (Supabase), Redis, Docker, AWS (EC2, S3), Socket.IO, LangGraph, Tailwind CSS, Scikit-learn, FastAPI.
 
 Major Projects:
-1. Joblio (Oct 2026 — Present): AI career copilot & intelligence platform published on Google Play Store. Built in React Native with a FastAPI microservice running LangGraph multi-agent pipelines for resume matching, GitHub hygiene auditing, and automated CI/CD fix generation. Designed two-pass NLP skill extractor recognizing 570+ technologies (60% token reduction) and 26-week ML demand forecasting (80% CI) with 30-day Redis caching. Play Store: https://play.google.com/store/apps/details?id=com.devashishcodes.mobile | GitHub: https://github.com/devashishhaldar2006/Joblio-app
+1. Wingr (Oct 2026 — Present): AI career copilot & intelligence platform published on Google Play Store. Built in React Native with a FastAPI microservice running LangGraph multi-agent pipelines for resume matching, GitHub hygiene auditing, and automated CI/CD fix generation. Designed two-pass NLP skill extractor recognizing 570+ technologies (60% token reduction) and 26-week ML demand forecasting (80% CI) with 30-day Redis caching. Play Store: https://play.google.com/store/apps/details?id=com.devashishcodes.mobile | GitHub: https://github.com/devashishhaldar2006/Joblio-app
 2. QuantFlow (Jul 2026 — Sep 2026): High-frequency quantitative backtesting platform. Core engine built in C++20 processing 1.48M+ ticks/sec on AWS EC2 (c6i.2xlarge) using contiguous memory buffers and zero runtime heap allocations. 197 / 197 GoogleTest cases passed. LangGraph multi-agent loop with Mistral AI using cyclic state reflection to tune Sharpe and drawdown. 0 look-ahead bias via timestamp order execution and intrabar stop-loss rules across 7 strategy models. Supabase S3 virtualized tick dataset storage; HMAC SHA-256 Razorpay webhook verification. Live: https://quantflow.hackcentral.me | GitHub: https://github.com/devashishhaldar2006/QuantFlow
 3. HackCentral (Mar 2026 — Jun 2026): Event discovery & real-time hackathon management platform. Sub-200ms API latency, 95+ Google Lighthouse score. Socket.IO bidirectional collaboration, MongoDB Atlas compound indexes on {userId, eventId}. Google Gemini API with Zod-enforced structured JSON output parsing for automated submission evaluation and pitch deck generation. httpOnly JWT auth & RBAC. Docker on AWS EC2. Live: https://hackcentral.me | GitHub: https://github.com/devashishhaldar2006/HackCentral
 
@@ -104,7 +104,7 @@ Competitive & Honors:
     if (/^(hi|hello|hey|yo|greetings|howdy|sup)\b/i.test(q)) {
       return NextResponse.json({
         reply: `Hey there! Glad you stopped by Devashish's workstation. I'm his interactive AI assistant, trained on his projects, architecture decisions, and background.
-\nYou can ask me anything—whether you want to dive deep into his C++20 zero-heap engine on QuantFlow, discuss his full-stack React/Node platforms like HackCentral, explore Joblio on the Play Store, check his competitive programming rating progression, or discuss hiring opportunities. What's on your mind?`,
+\nYou can ask me anything—whether you want to dive deep into his C++20 zero-heap engine on QuantFlow, discuss his full-stack React/Node platforms like HackCentral, explore Wingr on the Play Store, check his competitive programming rating progression, or discuss hiring opportunities. What's on your mind?`,
         model: "devashish-core-dynamic",
       });
     }
@@ -114,7 +114,7 @@ Competitive & Honors:
       return NextResponse.json({
         reply: `Devashish Haldar is a Software Engineer, Full Stack Developer, and Systems Builder based in Lucknow, India.
 \nHe specializes in building high-performance, real-world systems:
-- **Mobile & AI Platforms:** Engineered **Joblio**, an AI career platform published on Google Play Store featuring FastAPI, LangGraph multi-agent pipelines, 570+ technology NLP extraction, and 26-week ML skill forecasting.
+- **Mobile & AI Platforms:** Engineered **Wingr**, an AI career platform published on Google Play Store featuring FastAPI, LangGraph multi-agent pipelines, 570+ technology NLP extraction, and 26-week ML skill forecasting.
 - **Low-Latency & Systems:** Engineered **QuantFlow**, a C++20 engine that processes over 1.48M+ ticks/sec with zero heap allocations during execution loops, backed by 197 GoogleTests.
 - **Full-Stack & Real-Time:** Built **HackCentral** (sub-200ms API, 95+ Lighthouse, Socket.IO, Gemini automated grading with Zod-enforced structured JSON).
 - **AI Agent Architectures:** Implements cyclic state reflection using LangGraph and Mistral AI for robust strategy evaluation without hallucinations.
@@ -147,10 +147,10 @@ Competitive & Honors:
       });
     }
 
-    // Joblio
-    if (q.includes("joblio") || q.includes("play store") || q.includes("career copilot") || q.includes("react native") || q.includes("fastapi")) {
+    // Wingr / Joblio
+    if (q.includes("wingr") || q.includes("joblio") || q.includes("play store") || q.includes("career copilot") || q.includes("react native") || q.includes("fastapi")) {
       return NextResponse.json({
-        reply: `**Joblio** is an AI career platform and copilot published on the Google Play Store:
+        reply: `**Wingr** is an AI career platform and copilot published on the Google Play Store:
 - **Mobile & Backend Architecture:** React Native client with a FastAPI microservice orchestrating LangGraph multi-agent pipelines for automated resume matching, GitHub hygiene audits, and CI/CD fix generation.
 - **NLP Skill Extractor:** Two-pass NLP extractor recognizing 570+ technologies from live job postings; reduced prompt token consumption by 60% through resume pruning and dictionary pre-matching.
 - **Forecasting & Caching:** 26-week ML demand forecasting with 80% confidence intervals across tech skills; cached paper explanations in Redis for 30 days to reduce repeat inference costs to zero.
@@ -188,8 +188,8 @@ Competitive & Honors:
       return NextResponse.json({
         reply: `Why Devashish stands out for engineering teams:
 1. **Full-Stack & Systems Depth:** Comfortable architecting modern React/React Native, Next.js, and Node.js applications, while also writing low-level C++ with contiguous buffers and zero-heap loops.
-2. **Practical AI Agent Engineering:** Extensive hands-on work with LangGraph, cyclic reflection loops, and LLM structured outputs (Mistral, Gemini) that solve real workflow bottlenecks (Joblio on Play Store, QuantFlow).
-3. **High Velocity & Proven Builder:** Built and deployed three flagship platforms (QuantFlow, Joblio, HackCentral) and won 1st place in the national Deviathon hackathon.
+2. **Practical AI Agent Engineering:** Extensive hands-on work with LangGraph, cyclic reflection loops, and LLM structured outputs (Mistral, Gemini) that solve real workflow bottlenecks (Wingr on Play Store, QuantFlow).
+3. **High Velocity & Proven Builder:** Built and deployed three flagship platforms (QuantFlow, Wingr, HackCentral) and won 1st place in the national Deviathon hackathon.
 4. **Solid Computer Science Foundations:** 7.92 CGPA in B.Tech CSE (AI & ML) at PSIT with 450+ solved algorithmic problems.`,
         model: "devashish-core-dynamic",
       });

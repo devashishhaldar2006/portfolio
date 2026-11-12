@@ -195,11 +195,11 @@ drawBullet([
 
 y += 14;
 
-// Joblio
+// Wingr
 ctx.font = 'bold 38px "Segoe UI", Arial, sans-serif';
 ctx.fillStyle = '#0F172A';
-ctx.fillText('Joblio', leftMargin, y);
-const jbW = ctx.measureText('Joblio').width;
+ctx.fillText('Wingr', leftMargin, y);
+const jbW = ctx.measureText('Wingr').width;
 
 ctx.font = 'italic 34px "Segoe UI", Arial, sans-serif';
 ctx.fillStyle = '#475569';

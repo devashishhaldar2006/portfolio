@@ -14,12 +14,12 @@ interface TimelineItem {
   link?: { label: string; url: string };
 }
 
-// REAL RESUME ONLY: PSIT B.Tech in CSE (AI & ML), Deviathon Winner, LeetCode, CodeChef, QuantFlow, Joblio, HackCentral
+// REAL RESUME ONLY: PSIT B.Tech in CSE (AI & ML), Deviathon Winner, LeetCode, CodeChef, QuantFlow, Wingr, HackCentral
 const timelineData: TimelineItem[] = [
   {
     year: "Oct 2026 — Present",
     category: "PROJECT",
-    title: "Joblio — AI Career Platform & Multi-Agent Copilot",
+    title: "Wingr — AI Career Platform & Multi-Agent Copilot",
     organization: "React Native, LangGraph, Groq, MongoDB, Redis, Google Play Store",
     metrics: "Published on Play Store · 570+ Tech NLP · -60% Token Usage",
     description:

@@ -170,10 +170,10 @@ function InteractiveCodeChef3DGraph({
   const groupRef = useRef<THREE.Group>(null);
   const [hoveredCode, setHoveredCode] = useState<string | null>(null);
 
-  // Layout points along X axis with Y scaled from rating (1200 -> 1650)
-  const minRating = 1200;
+  // Layout points along X axis with Y scaled from rating (700 -> 1650)
+  const minRating = 700;
   const maxRating = 1650;
-  const spacing = 0.55;
+  const spacing = 0.32;
   const offsetX = ((contests.length - 1) * spacing) / 2;
 
   const points = useMemo(() => {
@@ -423,9 +423,9 @@ export function MetaMesh3D() {
             }`}
           >
             {mode === "github"
-              ? "451+ COMMITS"
+              ? "1,132+ COMMITS"
               : mode === "leetcode"
-              ? "450+ PROBLEMS · 1562 RATING"
+              ? "494 SOLVED · 1562 RATING"
               : "3★ · PEAK 1602 · RANK 392"}
           </span>
         </div>
@@ -443,7 +443,7 @@ export function MetaMesh3D() {
             </span>
           ) : (
             <span className="text-[10px] font-mono text-[#888C90] bg-white/80 px-2.5 py-1 rounded border border-[#E4E4E0]">
-              HOVER NODES TO INSPECT CONTEST RATINGS (PEAK 1602 STARTERS 151)
+              HOVER NODES TO INSPECT CONTEST RATINGS (PEAK 1602 · 3-STAR)
             </span>
           )
         ) : activeInfo ? (

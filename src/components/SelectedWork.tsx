@@ -23,8 +23,8 @@ interface ProjectItem {
 // 100% Exact Resume Details
 const projects: ProjectItem[] = [
   {
-    id: "joblio",
-    title: "Joblio",
+    id: "wingr",
+    title: "Wingr",
     role: "Mobile & AI Systems Engineer",
     period: "Oct 2026 — Present",
     tagline: "AI career copilot & intelligence platform published on Google Play Store",
