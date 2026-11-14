@@ -1,11 +1,23 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
-import { Download, Eye, FileText, Sparkles, CheckCircle2, Layers } from "lucide-react";
+import { Download, Eye, Layers } from "lucide-react";
 import { ResumeModal } from "./ResumeModal";
+
+// Fallback mesh while the high-res texture loads in Suspense
+function ResumeSheetFallback() {
+  return (
+    <group position={[0, 0, 0]}>
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[1.72, 2.22, 0.025]} />
+        <meshBasicMaterial color="#F3F4F6" />
+      </mesh>
+    </group>
+  );
+}
 
 // 3D Interactive Floating Resume Sheet with Crystal-Clear Real Text Texture
 function ThreeDResumeSheet({ isHovered }: { isHovered: boolean }) {
@@ -59,6 +71,11 @@ export function Interactive3DResumeCard({ variant = "card" }: Interactive3DResum
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState<"3d" | "flat">("3d");
   const [downloadTriggered, setDownloadTriggered] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const pdfPath = "/Devashish_Haldar_Resume.pdf";
 
@@ -129,15 +146,23 @@ export function Interactive3DResumeCard({ variant = "card" }: Interactive3DResum
             onClick={handlePreviewOnly}
             className="md:col-span-5 h-64 sm:h-72 relative rounded-2xl bg-[#1E2124] border border-[#E4E4E0]/80 overflow-hidden cursor-grab active:cursor-grabbing group/canvas shadow-inner"
           >
-            <Canvas
-              camera={{ position: [0, 0, 3.4], fov: 45 }}
-              className="w-full h-full"
-            >
-              <ambientLight intensity={1.0} />
-              <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.4}>
-                <ThreeDResumeSheet isHovered={isHovered} />
-              </Float>
-            </Canvas>
+            {mounted ? (
+              <Canvas
+                camera={{ position: [0, 0, 3.4], fov: 45 }}
+                className="w-full h-full"
+              >
+                <ambientLight intensity={1.0} />
+                <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.4}>
+                  <Suspense fallback={<ResumeSheetFallback />}>
+                    <ThreeDResumeSheet isHovered={isHovered} />
+                  </Suspense>
+                </Float>
+              </Canvas>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-[#1E2124] text-xs font-mono text-neutral-400">
+                LOADING 3D SHEET...
+              </div>
+            )}
 
             {/* Floating 3D Badges */}
             <div className="absolute top-2.5 left-2.5 pointer-events-none">

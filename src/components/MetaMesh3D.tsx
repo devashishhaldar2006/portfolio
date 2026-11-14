@@ -365,11 +365,13 @@ export function MetaMesh3D() {
           distance={5}
         />
 
-        {mode === "codechef" ? (
-          <InteractiveCodeChef3DGraph contests={codechefData} onHoverNode={setActiveContest} />
-        ) : (
-          <InteractivePillars mode={mode} gitHubData={gitHubData} onHoverPillar={setActiveInfo} />
-        )}
+        <React.Suspense fallback={null}>
+          {mode === "codechef" ? (
+            <InteractiveCodeChef3DGraph contests={codechefData} onHoverNode={setActiveContest} />
+          ) : (
+            <InteractivePillars mode={mode} gitHubData={gitHubData} onHoverPillar={setActiveInfo} />
+          )}
+        </React.Suspense>
 
         <OrbitControls
           enableZoom={false}
